@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <include layout="@layout/user_login_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/user_login_alert"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/user_bind_height"
+                android:layout_marginTop="25dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/edittext_user_key"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/back_textview_style"
+                    android:gravity="center_vertical"
+                    android:hint="@string/user_key_alert"
+                    android:paddingLeft="5dp"
+                    android:textColor="#000"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="@dimen/user_alert_size" />
+
+                <Button
+                    android:id="@+id/user_login_bind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/back_submit_style"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/user_bind_btn"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="1dp"
+                android:text="@string/user_alert"
+                android:textColor="#666"
+                android:textSize="@dimen/user_alert_size" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/dis_user_example" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="36dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_corner_border"
+                    android:padding="10dp" >
+
+                    <cn.eoe.app.widget.CustomButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        Image="@drawable/button_details_collect_selected"
+                        ImageID="@+id/imageview_details_collect"
+                        Text="@string/DetailsCollect"
+                        TextID="@+id/textview_details_collect"
+                        android:clickable="true" >
+                    </cn.eoe.app.widget.CustomButton>
+
+                    <cn.eoe.app.widget.CustomButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        Image="@drawable/button_details_discuss_selected"
+                        ImageID="@+id/imageview_details_discuss"
+                        Text="@string/DetailsDiscuss"
+                        TextID="@+id/textview_details_discuss"
+                        android:clickable="true" >
+                    </cn.eoe.app.widget.CustomButton>
+
+                    <cn.eoe.app.widget.CustomButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        Image="@drawable/button_details_good_selected"
+                        ImageID="@+id/imageview_details_good"
+                        Text="@string/DetailsGood"
+                        TextID="@+id/textview_details_good"
+                        android:clickable="true" >
+                    </cn.eoe.app.widget.CustomButton>
+
+                    <cn.eoe.app.widget.CustomButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        Image="@drawable/button_details_share_selected"
+                        ImageID="@+id/imageview_details_share"
+                        Text="@string/DetailsShare"
+                        TextID="@+id/textview_details_share"
+                        android:clickable="true" >
+                    </cn.eoe.app.widget.CustomButton>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#f5f5f5"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/user_button_alert"
+                    android:textColor="#000"
+                    android:textSize="@dimen/user_alert_size" />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/login_button_another"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/back_submit_style"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="0dp"
+                android:text="@string/user_login_another"
+                android:textColor="#fff" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

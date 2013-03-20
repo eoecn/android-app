@@ -12,7 +12,7 @@ public class DBManager {
 	private DBManager (Context ctx){
 		mContext = ctx;
 		if(dbHelper == null){
-			dbHelper = new DBHelper (ctx);
+			dbHelper = DBHelper.getInstance(ctx);
 			mSQLiteDB = dbHelper.getReadableDatabase();
 		}
 	}
@@ -23,5 +23,7 @@ public class DBManager {
 		}
 		return mDBManagerInstance;
 	}
+	
+	
 
 }

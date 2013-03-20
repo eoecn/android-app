@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="#2477ab" >
+   	
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|center"
+        android:src="@drawable/dis_eoelogo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="centerInside"
+        />
+    
+    <ImageButton 
+        android:id="@+id/login_login"
+        android:layout_width="@dimen/title_button_height"
+        android:layout_height="@dimen/title_button_height"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/button_userlogin"
+        android:scaleType="centerInside"
+        android:background="@drawable/back_behind_usershow_style"
+        />
+
+</FrameLayout>

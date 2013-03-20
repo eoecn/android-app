@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 底部圆角 白色背景 灰色边框 长方体 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape>
+            <solid android:color="#ffcfcfcf" />
+
+
+            <corners
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
+                android:topLeftRadius="8dp"
+                android:topRightRadius="8dp" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#ff9a9a9a" />
+        </shape>
+    </item>
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape>
+            <solid android:color="#ffcfcfcf" />
+
+
+            <corners
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
+                android:topLeftRadius="8dp"
+                android:topRightRadius="8dp" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#ffcfcfcf" />
+        </shape>
+    </item>
+
+</layer-list>

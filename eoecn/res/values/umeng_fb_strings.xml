@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="UMEmptyFbNotAllowed">Please input your feedback.</string>
+	<string name="UMContentTooLong">Your content was over 140 characters. You\'ll have
+		to be more clever.</string>
+	<string name="UMFbList_ListItem_State_ReSend">Fail,Press to resend</string>
+	<string name="UMFbList_ListItem_State_Sending">Sending…</string>
+	<string name="UMFbList_ListItem_State_Resending">Resending</string>
+	<string name="UMFbList_ListItem_State_Fail">Fail</string>
+	<string name="UMFb_Atom_State_Fail">Fail</string>
+	<string name="UMFb_Atom_State_Sending">Sending…</string>
+	<string name="UMFb_Atom_State_Resending">Fail,press to resend</string>
+	<string name="UMFeedbackUmengTitle">Feedback</string>
+	<string name="UMFeedbackListTitle">My Feedback</string>
+	<string name="UMFeedbackConversationTitle">My Feedback</string>
+	<string name="UMFeedbackTitle">Every word you write will benefit us.</string>
+	<string name="UMFeedbackContent">Input your suggestions here</string>
+	<string name="UMFeedbackSummit">Submit</string>
+	<string name="UMFeedbackGoBack">Return</string>
+	
+	<string name="UMFeedbackGotIt">Got it</string>
+	<string name="UMFeedbackSeeDetail">See Detail</string>
+	
+	<string-array name="UMageList">
+		<item>Age</item>
+		<item>&lt;18</item>
+		<item>18~24</item>
+		<item>25~30</item>
+		<item>31~35</item>
+		<item>36~40</item>
+		<item>41~50</item>
+		<item>51~59</item>
+		<item>>=60</item>
+	</string-array>
+	<string-array name="UMgenderList">
+		<item>Gender</item>
+		<item>Male</item>
+		<item>Female</item>
+	</string-array>
+	<string name="UMViewThread">View Thread</string>
+	<string name="UMNewReplyAlertTitle">You\'ve got reply</string>
+	<string name="UMDeleteThread">Delete Thread</string>
+	<string name="UMViewFeedback">View Feedback</string>
+	<string name="UMDeleteFeedback">Delete Feedback</string>
+	<string name="UMResendFeedback">Resend Feedback</string>
+	<string name="UMDeleteMsg">Delete message</string>
+	<string name="UMNewReplyFlick"> Got new reply</string>
+	<string name="UMNewReplyTitle"> Got new reply</string>
+	<string name="UMNewReplyHint"> Click to view</string>
+</resources>

@@ -1,0 +1,83 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dadada"
+    android:orientation="vertical" >
+
+    <include layout="@layout/behind_title" />
+
+    <ListView
+        android:id="@+id/behind_list_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_marginBottom="@dimen/list_margin_height"
+        android:layout_marginTop="@dimen/title_height"
+        android:divider="@drawable/dis_behind_side"
+        android:listSelector="#0fff"
+        android:cacheColorHint="#0000" >
+    </ListView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ad_height"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/bottom_button_height"
+         >
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_button_height"
+        android:layout_gravity="bottom"
+        android:background="@drawable/back_behind_menu"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <cn.eoe.app.widget.CustomButton
+            android:id="@+id/cbSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            Image="@drawable/button_setting"
+            ImageID="@+id/imageview_setting_button"
+            Text="@string/button_setting"
+            TextID="@+id/textview_setting_button"
+            android:background="@drawable/back_button_default_style"
+            android:clickable="true" 
+            android:visibility="gone">
+        </cn.eoe.app.widget.CustomButton>
+
+        <include layout="@layout/merge_verticalside" />
+        
+        <cn.eoe.app.widget.CustomButton
+            android:id="@+id/cbFeedback"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            Image="@drawable/button_feedback"
+            ImageID="@+id/imageview_feedback_button"
+            Text="@string/button_feedback"
+            TextID="@+id/textview_feedback_button"
+            android:background="@drawable/back_button_default_style"
+            android:clickable="true" >
+        </cn.eoe.app.widget.CustomButton>
+
+        <include layout="@layout/merge_verticalside" />
+        
+        <cn.eoe.app.widget.CustomButton
+            android:id="@+id/cbAbove"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            Image="@drawable/button_about"
+            ImageID="@+id/imageview_about_button"
+            Text="@string/button_about"
+            TextID="@+id/textview_about_button"
+            android:background="@drawable/back_button_default_style"
+            android:clickable="true" >
+        </cn.eoe.app.widget.CustomButton>
+    </LinearLayout>
+
+</FrameLayout>

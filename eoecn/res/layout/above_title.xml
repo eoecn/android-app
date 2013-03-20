@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="@drawable/back_title" >
+
+    <LinearLayout
+        android:id="@+id/Linear_above_toHome"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/back_above_menushow_style"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/button_above_more" />
+
+        <TextView
+            android:id="@+id/tv_above_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageview_above_query"
+        style="@style/title_right_button"
+        android:layout_width="@dimen/title_height"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/title_height"
+        android:src="@drawable/button_title_query" />
+
+   
+    <ImageView
+        android:id="@+id/imageview_above_more"
+        style="@style/title_right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/button_title_more" />
+
+</RelativeLayout>

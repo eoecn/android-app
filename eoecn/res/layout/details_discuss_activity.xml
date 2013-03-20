@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_gravity="top"
+        layout="@layout/details_title" />
+
+    <ListView
+        android:id="@+id/details_listview_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginBottom="49dp"
+        android:layout_marginTop="@dimen/title_height"
+        android:divider="@drawable/dis_behind_side"
+        android:listSelector="#0fff" >
+    </ListView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="#d4d4d4" >
+
+        <EditText
+            android:id="@+id/details_edittext_discuss"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/back_textview_style"
+            android:drawableLeft="@drawable/dis_details_show"
+            android:hint="@string/detail_prompt"
+            android:textColor="#000"
+            android:textCursorDrawable="@color/black" />
+
+        <Button
+            android:id="@+id/details_button_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/back_submit_style"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/detail_enter"
+            android:textColor="#fff" />
+    </FrameLayout>
+
+</FrameLayout>

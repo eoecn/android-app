@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content">
+	<LinearLayout
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+		android:layout_gravity="center" android:orientation="vertical"
+		android:background="@drawable/umeng_fb_gray_frame">
+		<TextView android:id="@+id/umeng_fb_new_reply_alert_title"
+			android:layout_width="fill_parent" android:layout_height="40dip"
+			android:text="您的反馈收到了回复" android:textColor="#565656"
+			android:textSize="20dip" android:gravity="center"
+			android:background="@drawable/umeng_fb_bar_bg" />
+		<TextView android:id="@+id/umeng_fb_new_dev_reply_box"
+			android:text="This is the reply from dev" android:layout_marginTop="10dip"
+			android:textSize="19dip" android:textColor="#6F6F6F" android:gravity="center_vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginLeft="8dip" android:layout_marginRight="8dip"
+			android:minHeight="110dip" />
+		<View android:layout_height="3dip" android:layout_width="fill_parent"
+			android:layout_marginTop="3dip" android:layout_marginBottom="1dip"
+			android:background="#E5E5E5" />
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_gravity="bottom"
+			android:layout_marginTop="1dip" android:orientation="horizontal"
+			android:background="#E0E0E0" >
+			<Button android:id="@+id/umeng_fb_exitBtn"
+				android:layout_width="80dip" android:background="@drawable/umeng_fb_submit_selector"
+				android:textColor="#FFFFFF" android:layout_marginLeft="10dp"
+				android:layout_marginBottom="10dp" android:layout_height="45dp"
+				android:layout_marginTop="10dp" android:text="@string/UMFeedbackGotIt"
+				android:layout_weight="1"/>
+			<Button android:id="@+id/umeng_fb_see_detail_btn"
+				android:layout_width="80dip" android:background="@drawable/umeng_fb_submit_selector"
+				android:textColor="#FFFFFF" android:layout_height="45dip"
+				android:text="@string/UMFeedbackSeeDetail" android:layout_marginTop="10dip"
+				android:layout_marginLeft="40dp"
+				android:layout_marginBottom="10dp" android:layout_marginRight="10dp"
+				android:layout_weight="1" />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

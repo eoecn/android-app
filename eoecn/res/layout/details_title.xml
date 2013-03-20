@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="#2477ab" >
+
+    <ImageView
+        android:id="@+id/details_imageview_gohome"
+        style="@style/title_right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/button_details_gohome" />
+
+    <TextView
+        android:id="@+id/details_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="精选资讯"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+</FrameLayout>

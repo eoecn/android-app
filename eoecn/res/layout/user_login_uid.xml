@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_user_uid_style" >
+
+    <include
+        android:layout_gravity="top"
+        layout="@layout/user_login_title" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/dis_about_logo" />
+
+    <LinearLayout
+        android:id="@+id/edit_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/title_height"
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
+
+        <EditText
+            android:id="@+id/edittext_user_username"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/back_textview_style"
+            android:hint="@string/user_username"
+            android:textColor="#000"
+            android:textCursorDrawable="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edittext_user_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/back_textview_style"
+            android:hint="@string/user_pwd"
+            android:inputType="textPassword"
+            android:textColor="#000"
+            android:textCursorDrawable="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button_user_login"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/back_submit_style"
+            android:text="@string/user_enter"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,54 @@
+<!--
+  Copyright 2011 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<resources>
+
+    <dimen name="slidingmenu_offset">150dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+	<!-- 标题配置 -->
+	<dimen name="title_height">48dp</dimen>
+	<dimen name="title_button_height">40dp</dimen>
+	<dimen name="title_rightButton_padding">8dp</dimen>
+	<dimen name="title_text_size">12sp</dimen>
+	
+	<!-- behind配置 -->
+	<dimen name="ad_height">110dp</dimen>
+	<dimen name="bottom_button_height">45dp</dimen>
+	<dimen name="list_margin_height">160dp</dimen>  <!-- 上边两个的和 -->
+	<dimen name="behind_list_height">50dp</dimen>
+	<dimen name="behind_list_text_size">20sp</dimen>
+    
+    <integer name="num_cols">1</integer>
+    
+    <!-- 详情页面 -->
+    <dimen name="details_bottom_height">45dp</dimen>
+    
+    <!-- 用户中心配置 -->
+    <dimen name="user_bind_height">40dp</dimen>
+	<dimen name="user_title_size">18sp</dimen>
+	<dimen name="user_alert_size">12sp</dimen>
+	<dimen name="user_linear_height">80dp</dimen>
+	
+	<!-- 用户信息 -->
+	<dimen name="user_icon_height">80dp</dimen>
+	
+	<!-- 弹出框 -->
+	<dimen name="popupWindow_width">300dp</dimen>
+	<dimen name="popupWindow_margin">20dp</dimen>
+	
+	<!-- 用户信息图标宽度 -->
+</resources>

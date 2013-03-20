@@ -1,5 +1,17 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Light" />
+    
+    <style name="behind_button_style">
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">@dimen/user_alert_size</item>
+    </style>
 
+    <style name="title_right_button">
+        <item name="android:paddingLeft">@dimen/title_rightButton_padding</item>
+        <item name="android:paddingRight">@dimen/title_rightButton_padding</item>
+        <item name="android:clickable">true</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:background">@drawable/back_button_default_style</item>
+    </style>
 </resources>

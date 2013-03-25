@@ -12,6 +12,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,13 +47,10 @@ import cn.eoe.app.biz.TopDao;
 import cn.eoe.app.biz.WikiDao;
 import cn.eoe.app.config.Constants;
 import cn.eoe.app.db.DBHelper;
-import cn.eoe.app.entity.BlogsMoreResponse;
 import cn.eoe.app.entity.BlogsResponseEntity;
 import cn.eoe.app.entity.CategorysEntity;
 import cn.eoe.app.entity.NavigationModel;
-import cn.eoe.app.entity.NewsMoreResponse;
 import cn.eoe.app.entity.NewsResponseEntity;
-import cn.eoe.app.entity.WikiMoreResponse;
 import cn.eoe.app.entity.WikiResponseEntity;
 import cn.eoe.app.https.NetWorkHelper;
 import cn.eoe.app.indicator.PageIndicator;
@@ -123,6 +121,8 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	private String current_page;
 
 	private InputMethodManager imm;
+
+	private boolean isShowPopupWindows = false;
 
 	// [end]
 
@@ -326,6 +326,14 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 		case R.id.login_login:
 			SharedPreferences share = this.getSharedPreferences(
 					UserLoginUidActivity.SharedName, Context.MODE_PRIVATE);
+			// [start] 修复上一个bug
+			String Key = share.getString(UserLoginUidActivity.KEY, "");
+			if (Key!="" && !Key.contains(":")) {
+				Editor edit = share.edit();
+				edit.putString(UserLoginUidActivity.KEY, "");
+				edit.commit();
+			}
+			// [end] 下一版本删除掉
 			if (share.contains(UserLoginUidActivity.KEY)
 					&& !share.getString(UserLoginUidActivity.KEY, "")
 							.equals("")) {
@@ -333,11 +341,12 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 			} else {
 				IntentUtil.start_activity(this, UserLoginActivity.class);
 			}
-
 			break;
 		case R.id.imageview_above_more:
-			new PopupWindowUtil(mViewPager).showActionWindow(v, this,
-					mBasePageAdapter.tabs);
+			if (isShowPopupWindows) {
+				new PopupWindowUtil(mViewPager).showActionWindow(v, this,
+						mBasePageAdapter.tabs);
+			}
 			break;
 		case R.id.imageview_above_query:
 
@@ -431,13 +440,13 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 			if (dX < 8 && dY > 8 && !mIsTitleHide && !down) {
 				Animation anim = AnimationUtils.loadAnimation(
 						MainActivity.this, R.anim.push_top_in);
-				anim.setFillAfter(true);
+//				anim.setFillAfter(true);
 				anim.setAnimationListener(MainActivity.this);
 				title.startAnimation(anim);
 			} else if (dX < 8 && dY > 8 && mIsTitleHide && down) {
 				Animation anim = AnimationUtils.loadAnimation(
 						MainActivity.this, R.anim.push_top_out);
-				anim.setFillAfter(true);
+//				anim.setFillAfter(true);
 				anim.setAnimationListener(MainActivity.this);
 				title.startAnimation(anim);
 			} else {
@@ -487,6 +496,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 			mBasePageAdapter.Clear();
 			MainActivity.this.showContent();
 			super.onPreExecute();
+			isShowPopupWindows = false;
 		}
 
 		@Override
@@ -536,6 +546,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 		protected void onPostExecute(Map<String, Object> result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			isShowPopupWindows = true;
 			mBasePageAdapter.Clear();
 			mViewPager.removeAllViews();
 			if (!result.isEmpty()) {
@@ -620,13 +631,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	public void onAnimationEnd(Animation animation) {
 		// TODO Auto-generated method stub
 		if (mIsTitleHide) {
-			FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) title
-					.getLayoutParams();
-			lp.setMargins(
-					0,
-					-getResources().getDimensionPixelSize(R.dimen.title_height),
-					0, 0);
-			title.setLayoutParams(lp);
+			title.setVisibility(View.GONE);
 		} else {
 
 		}
@@ -642,6 +647,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	@Override
 	public void onAnimationStart(Animation animation) {
 		// TODO Auto-generated method stub
+		title.setVisibility(View.VISIBLE);
 		if (mIsTitleHide) {
 			FrameLayout.LayoutParams lp = (LayoutParams) mlinear_listview
 					.getLayoutParams();

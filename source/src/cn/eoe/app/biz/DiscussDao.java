@@ -6,20 +6,16 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 
-import android.content.Context;
+import android.app.Activity;
 import cn.eoe.app.config.Constants;
-import cn.eoe.app.config.Urls;
 import cn.eoe.app.entity.DetailsOwnDiscussJson;
-import cn.eoe.app.entity.NewsJson;
 import cn.eoe.app.entity.NewsResponseEntity;
-import cn.eoe.app.https.HttpUtils;
-import cn.eoe.app.ui.DetailsDiscussActivity;
 import cn.eoe.app.utils.RequestCacheUtil;
 
 public class DiscussDao extends BaseDao {
 
-	public DiscussDao(Context context) {
-		super(context);
+	public DiscussDao(Activity activity) {
+		super(activity);
 	}
 
 	private NewsResponseEntity _newsResponse;
@@ -36,7 +32,7 @@ public class DiscussDao extends BaseDao {
 		// TODO Auto-generated method stub
 		DetailsOwnDiscussJson json = null;
 		try {
-			String result = RequestCacheUtil.getRequestContent(mContext, url,
+			String result = RequestCacheUtil.getRequestContent(mActivity, url,
 					Constants.WebSourceType.Json,
 					Constants.DBContentType.Discuss, useCache);
 			json = mObjectMapper.readValue(result,

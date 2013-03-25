@@ -14,7 +14,9 @@ import cn.eoe.app.entity.CategorysEntity;
 import cn.eoe.app.entity.NewsSearchJson;
 import cn.eoe.app.entity.WikiSearchJson;
 import cn.eoe.app.https.HttpUtils;
+import cn.eoe.app.utils.Utility;
 
+import android.app.Activity;
 import android.content.Context;
 
 public class SearchDao extends BaseDao {
@@ -22,10 +24,10 @@ public class SearchDao extends BaseDao {
 	private String mTag;
 	private String keyWord;
 	private String cate_name;
-	private boolean hasChild=true;
+	private boolean hasChild = true;
 
-	public SearchDao(Context context) {
-		super(context);
+	public SearchDao(Activity activity) {
+		super(activity);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -51,46 +53,45 @@ public class SearchDao extends BaseDao {
 	public List<Object> mapperJson() {
 		categorys.clear();
 		tabs.clear();
-		hasChild=false;
+		hasChild = false;
 		try {
 			if (mTag.equals("news")) {
 				NewsSearchJson newsSearchJson = mObjectMapper.readValue(
-						HttpUtils.getByHttpClient(mContext,
+						HttpUtils.getByHttpClient(
+								mActivity,
 								Urls.BASE_SEARCH_URL + "t=" + mTag + "&w="
-										+ keyWord),
+										+ keyWord
+										+ Utility.getScreenParams(mActivity)),
 						new TypeReference<NewsSearchJson>() {
 						});
 				categorys.add(newsSearchJson.getResponse());
 				cate_name = newsSearchJson.getResponse().getName();
-				if(newsSearchJson.getResponse().getItems()!=null)
-				{
-					hasChild=true;
+				if (newsSearchJson.getResponse().getItems() != null) {
+					hasChild = true;
 				}
 			} else if (mTag.equals("wiki")) {
 				WikiSearchJson wikiSearchJson = mObjectMapper.readValue(
-						HttpUtils.getByHttpClient(mContext,
+						HttpUtils.getByHttpClient(mActivity,
 								Urls.BASE_SEARCH_URL + "t=" + mTag + "&w="
 										+ keyWord),
 						new TypeReference<WikiSearchJson>() {
 						});
 				categorys.add(wikiSearchJson.getResponse());
 				cate_name = wikiSearchJson.getResponse().getName();
-				if(wikiSearchJson.getResponse().getItems()!=null)
-				{
-					hasChild=true;
+				if (wikiSearchJson.getResponse().getItems() != null) {
+					hasChild = true;
 				}
 			} else if (mTag.equals("blog")) {
 				BlogSearchJson blogSearchJson = mObjectMapper.readValue(
-						HttpUtils.getByHttpClient(mContext,
+						HttpUtils.getByHttpClient(mActivity,
 								Urls.BASE_SEARCH_URL + "t=" + mTag + "&w="
 										+ keyWord),
 						new TypeReference<BlogSearchJson>() {
 						});
 				categorys.add(blogSearchJson.getResponse());
 				cate_name = blogSearchJson.getResponse().getName();
-				if(blogSearchJson.getResponse().getItems()!=null)
-				{
-					hasChild=true;
+				if (blogSearchJson.getResponse().getItems() != null) {
+					hasChild = true;
 				}
 			}
 			return categorys;
@@ -103,7 +104,7 @@ public class SearchDao extends BaseDao {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -117,9 +118,8 @@ public class SearchDao extends BaseDao {
 		tabs.add(cate1);
 		return tabs;
 	}
-	
-	public boolean getHasChild()
-	{
+
+	public boolean getHasChild() {
 		return hasChild;
 	}
 }

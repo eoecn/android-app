@@ -18,13 +18,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import cn.eoe.app.R;
+import cn.eoe.app.biz.WikiDao;
 import cn.eoe.app.entity.WikiCategoryListEntity;
 import cn.eoe.app.entity.WikiContentItem;
 import cn.eoe.app.entity.WikiMoreResponse;
 import cn.eoe.app.https.HttpUtils;
-import cn.eoe.app.utils.CommonUtil;
 
 public class WikiFragment extends BaseListFragment {
 
@@ -40,9 +39,6 @@ public class WikiFragment extends BaseListFragment {
 			case 0:
 				more_url = loadMoreEntity.getMore_url();
 				mAdapter.appendToList(loadMoreEntity.getItems());
-				break;
-			case -1:
-				Toast.makeText(getActivity(), "网络请求失败 ,请检查网络 ",Toast.LENGTH_LONG ).show();
 				break;
 			}
 			onLoad();
@@ -152,7 +148,6 @@ public class WikiFragment extends BaseListFragment {
 
 	@Override
 	public void onLoadMore() {
-
 		if (more_url.equals(null) || more_url.equals("")) {
 			mHandler.sendEmptyMessage(1);
 			return;
@@ -160,25 +155,11 @@ public class WikiFragment extends BaseListFragment {
 			new Thread() {
 				@Override
 				public void run() {
-					WikiMoreResponse response;
-					try {
-						response = mMapper.readValue(
-								HttpUtils.getByHttpClient(mActivity, more_url),
-								new TypeReference<WikiMoreResponse>() {
-								});
-						if (response != null) {
-							loadMoreEntity = response.getResponse();
-							mHandler.sendEmptyMessage(0);
-						}
-					} catch (JsonParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (JsonMappingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					WikiMoreResponse response = new WikiDao(mActivity)
+							.getMore(more_url);
+					if (response != null) {
+						loadMoreEntity = response.getResponse();
+						mHandler.sendEmptyMessage(0);
 					}
 				}
 			}.start();

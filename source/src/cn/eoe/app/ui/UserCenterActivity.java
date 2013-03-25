@@ -132,8 +132,8 @@ public class UserCenterActivity extends BaseFragmentActivity implements
 		@Override
 		protected UserResponse doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			return mUserDao.mapperJson(share.getString(
-					UserLoginUidActivity.KEY, ""));
+				return mUserDao.mapperJson(share.getString(
+						UserLoginUidActivity.KEY, ""));
 		}
 
 		@Override
@@ -143,8 +143,8 @@ public class UserCenterActivity extends BaseFragmentActivity implements
 			loadLayout.setVisibility(View.GONE);
 			if (result == null) {
 				UserLogOutFragment fragment=new UserLogOutFragment(
-						UserCenterActivity.this);
-				fragment.showText(true);
+						UserCenterActivity.this,true);
+				
 				mTabsAdapter.addTab("获取信息错误",fragment );
 				return;
 			}
@@ -152,7 +152,7 @@ public class UserCenterActivity extends BaseFragmentActivity implements
 					UserCenterActivity.this));
 			mTabsAdapter.addTab("个人简介", new UserIntroFragment(result));
 			mTabsAdapter.addTab("退出功能", new UserLogOutFragment(
-					UserCenterActivity.this));
+					UserCenterActivity.this,false));
 			mTabsAdapter.notifyDataSetChanged();
 			mViewPager.setCurrentItem(1);
 		}

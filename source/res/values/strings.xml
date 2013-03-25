@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">eoecn客户端</string>
+    <string name="app_name">eoe</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
@@ -28,23 +28,20 @@
     <string name="user_login_alert">你终于来啦，快登录吧</string>
     <string name="user_key_alert">输入你的密钥</string>
     <string name="user_bind_btn">绑定</string>
-    <string name="user_alert">请在web端登陆后，寻找你的密钥：\nhttp://my.eoe.cn/admin\n会员中心>设置>我的密钥（如下图）</string>
+    <string name="user_alert">请在web端登陆后，寻找你的密钥：\nhttp://my.eoe.cn/admin\n会员中心>资料设置>我的密钥（如下图）</string>
     <string name="user_button_alert">登陆后，你可以享有以下功能</string>
     <string name="user_level_alert">社区勋章</string>
     <string name="user_login_another">换一种方式登录</string>
     <string name="user_logout">注销</string>
 
     <!-- 登录 -->
-    <string name="user_title">eoe客户端</string>
+    <string name="user_title">eoe</string>
     <string name="user_cancel">取消</string>
     <string name="user_remember">记住密码</string>
     <string name="user_enter">立即登录</string>
     <string name="user_user_empty">用户名不能为空!</string>
     <string name="user_pwd_empty">密码不能为空!</string>
     <string name="user_login_prompt">请先登录</string>
-
-    <!-- 测试 -->
-    <string name="text">注册时间：2011-04-20 13:53\nFocus android,iphone,web,business\nArchitecture,aglie，technic,beyond...</string>
 
     <!-- 上拉下拉 -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
@@ -62,12 +59,13 @@
     <string name="user_username">输入用户名</string>
     <string name="user_pwd">输入密码</string>
     <string name="user_login_error">用户名或者密码错误!</string>
+    <string name="user_loginKey_error">错误密钥!</string>
     <string name="user_loginInfo_error">获取信息失败，\n请尝试重新登录。</string>
     <string name="about">关于我们</string>
-    <string name="about_title">eoe客户端\n基于：www.eoe.cn</string>
+    <string name="about_title">名称:eoe\n版本:1.0.0\n基于:www.eoe.cn</string>
     <string name="about_intro">[应用简介]\n\teoe客户端是一款专为移动开发者提供帮助的软件。依靠www.eoe.cn开发者社区，将高质量的移动开发资讯、学习教程、代码库等信息提供给移动开发者，以方便大家能更好更快的学习移动开发的相关知识，尽快成长。</string>
     <string name="about_story">[应用故事]\n\teoe的理念是‘让移动开发更简单’，如何让移动开发者更简单是我们不断思考和探索的，我们认为有组织、有体系的内容对开发者的学习和成长都是最有价值的，于是大家都希望有这么一款让我们零碎时间里学习到最有价值的知识，于是eoe客户端诞生了!</string>
-    <string name="about_thanks">[致谢]\n\teoe客户端里边的内容资源都是由eoeo开发者社区的忠实用户所提供的，并由我们eoe易联志远开发进行组织和展示，感谢其中包括的所有人，感谢你们提供的内容，有了你们eoe会更精彩！</string>
+    <string name="about_thanks">[致谢]\n\teoe客户端里边的内容资源都是由eoe开发者社区的忠实用户所提供的，并由我们eoe易联志远开发进行组织和展示，感谢其中包括的所有人，感谢你们提供的内容，有了你们eoe会更精彩！</string>
     <string name="about_tontact">联系我们：</string>
     <string name="about_sina"> \@eoe移动开发者社区</string>
     <string name="about_weixin"> eoe_cn</string>

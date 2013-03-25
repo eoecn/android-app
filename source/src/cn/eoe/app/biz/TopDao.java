@@ -9,7 +9,7 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 
-import android.content.Context;
+import android.app.Activity;
 import cn.eoe.app.config.Constants;
 import cn.eoe.app.config.Urls;
 import cn.eoe.app.entity.BlogsCategoryListEntity;
@@ -20,6 +20,7 @@ import cn.eoe.app.entity.NewsMoreResponse;
 import cn.eoe.app.entity.WikiCategoryListEntity;
 import cn.eoe.app.entity.WikiMoreResponse;
 import cn.eoe.app.utils.RequestCacheUtil;
+import cn.eoe.app.utils.Utility;
 
 public class TopDao extends BaseDao {
 
@@ -29,16 +30,17 @@ public class TopDao extends BaseDao {
 
 	List<CategorysEntity> tabs = new ArrayList<CategorysEntity>();
 
-	public TopDao(Context context) {
-		super(context);
+	public TopDao(Activity activity) {
+		super(activity);
 	}
 
 	public List<Object> mapperJson(boolean useCache) {
 		List<Object> topCategorys = new ArrayList<Object>();
 		tabs.clear();
 		try {
-			String resultNews = RequestCacheUtil.getRequestContent(mContext,
-					Urls.TOP_NEWS_URL, Constants.WebSourceType.Json,
+			String resultNews = RequestCacheUtil.getRequestContent(mActivity,
+					Urls.TOP_NEWS_URL + Utility.getScreenParams(mActivity),
+					Constants.WebSourceType.Json,
 					Constants.DBContentType.Content_list, useCache);
 			NewsMoreResponse newsMoreResponse = mObjectMapper.readValue(
 					resultNews, new TypeReference<NewsMoreResponse>() {
@@ -46,8 +48,9 @@ public class TopDao extends BaseDao {
 			if (newsMoreResponse != null) {
 				this.newsCategorys = newsMoreResponse.getResponse();
 			}
-			String resultBlogs = RequestCacheUtil.getRequestContent(mContext,
-					Urls.TOP_BLOG_URL, Constants.WebSourceType.Json,
+			String resultBlogs = RequestCacheUtil.getRequestContent(mActivity,
+					Urls.TOP_BLOG_URL + Utility.getScreenParams(mActivity),
+					Constants.WebSourceType.Json,
 					Constants.DBContentType.Content_list, useCache);
 			BlogsMoreResponse blogsMoreResponse = mObjectMapper.readValue(
 					resultBlogs, new TypeReference<BlogsMoreResponse>() {
@@ -55,8 +58,9 @@ public class TopDao extends BaseDao {
 			if (blogsMoreResponse != null) {
 				this.blogsCategorys = blogsMoreResponse.getResponse();
 			}
-			String resultWiki = RequestCacheUtil.getRequestContent(mContext,
-					Urls.TOP_WIKI_URL, Constants.WebSourceType.Json,
+			String resultWiki = RequestCacheUtil.getRequestContent(mActivity,
+					Urls.TOP_WIKI_URL + Utility.getScreenParams(mActivity),
+					Constants.WebSourceType.Json,
 					Constants.DBContentType.Content_list, useCache);
 			WikiMoreResponse wikiMoreResponse = mObjectMapper.readValue(
 					resultWiki, new TypeReference<WikiMoreResponse>() {

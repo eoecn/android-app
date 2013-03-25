@@ -73,6 +73,7 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.login_button_another:
 			IntentUtil.start_activity(this, UserLoginUidActivity.class);
+			finish();
 			break;
 		case R.id.user_login_bind:
 			new LoginAsyncTask().execute();
@@ -97,8 +98,8 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
 				return false;
 			}
 			try {
-				mUserDao.mapperJson(editKey.getText().toString());
-				return true;
+				return mUserDao.mapperJson(editKey.getText().toString()) != null ? true
+						: false;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -116,9 +117,12 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
 				edit.putString(UserLoginUidActivity.KEY, editKey.getText()
 						.toString());
 				edit.commit();
+				IntentUtil.start_activity(UserLoginActivity.this,
+						UserCenterActivity.class);
+				finish();
 			} else {
 				showLongToast(getResources().getString(
-						R.string.user_login_error));
+						R.string.user_loginKey_error));
 			}
 		}
 	}

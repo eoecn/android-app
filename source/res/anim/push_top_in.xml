@@ -5,6 +5,6 @@
         android:duration="300"
         android:fromYDelta="0"
         android:toYDelta="-100%"
-        android:fillAfter="false"  />
+        android:fillBefore="true"  />
 
 </set>

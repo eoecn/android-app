@@ -6,19 +6,23 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import cn.eoe.app.config.Constants;
 import cn.eoe.app.config.Urls;
+import cn.eoe.app.entity.BlogsMoreResponse;
 import cn.eoe.app.entity.NewsJson;
 import cn.eoe.app.entity.NewsMoreResponse;
 import cn.eoe.app.entity.NewsResponseEntity;
 import cn.eoe.app.https.HttpUtils;
 import cn.eoe.app.utils.RequestCacheUtil;
+import cn.eoe.app.utils.Utility;
 
 public class NewsDao extends BaseDao {
 
-	public NewsDao(Context context) {
-		super(context);
+	public NewsDao(Activity activity) {
+		super(activity);
 	}
 
 	private NewsResponseEntity _newsResponse;
@@ -35,8 +39,9 @@ public class NewsDao extends BaseDao {
 		// TODO Auto-generated method stub
 		NewsJson newsJson;
 		try {
-			String result = RequestCacheUtil.getRequestContent(mContext,
-					Urls.NEWS_LIST, Constants.WebSourceType.Json,
+			String result = RequestCacheUtil.getRequestContent(mActivity,
+					Urls.NEWS_LIST + Utility.getScreenParams(mActivity),
+					Constants.WebSourceType.Json,
 					Constants.DBContentType.Content_list, useCache);
 			newsJson = mObjectMapper.readValue(result,
 					new TypeReference<NewsJson>() {
@@ -63,17 +68,17 @@ public class NewsDao extends BaseDao {
 
 	}
 
-	public NewsMoreResponse getSearchResult(String keyWord) {
-		NewsMoreResponse moreResponse;
+	public NewsMoreResponse getMore(String more_url) {
+		NewsMoreResponse response;
 		try {
-			moreResponse = mObjectMapper.readValue(
-					HttpUtils.getByHttpClient(mContext, Urls.BASE_SEARCH_URL
-							+ "t=news&w=" + keyWord),
+			String result = RequestCacheUtil.getRequestContent(mActivity,
+					more_url + Utility.getScreenParams(mActivity),
+					Constants.WebSourceType.Json,
+					Constants.DBContentType.Content_list, true);
+			response = mObjectMapper.readValue(result,
 					new TypeReference<NewsMoreResponse>() {
 					});
-			if (moreResponse != null) {
-				return moreResponse;
-			}
+			return response;
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,8 +87,6 @@ public class NewsDao extends BaseDao {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
 		return null;

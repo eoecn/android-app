@@ -76,7 +76,7 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/about_story"
                 android:textColor="#000"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/about_thanks"
                 android:textColor="#000"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/about_tontact"
                 android:textColor="#000"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/about_textview_weibo"

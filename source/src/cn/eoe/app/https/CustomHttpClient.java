@@ -123,6 +123,7 @@ public class CustomHttpClient {
 					R.string.httpError),e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 			throw new RuntimeException(context.getResources().getString(
 					R.string.httpError),e);
 		} 

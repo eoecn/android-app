@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu Mar 21 10:35:55 CST 2013
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=D\:\\\u684C\u9762\\eoecn_fat.jar
+manifest.mergeall=true
+manifest.mainclass=ui.MainActivity
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=

@@ -2,18 +2,18 @@ package cn.eoe.app.biz;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import android.content.Context;
+import android.app.Activity;
 
 public  class BaseDao {
 	ObjectMapper mObjectMapper = new ObjectMapper();
 
-	protected Context mContext;
+	protected Activity mActivity;
 	
 	public BaseDao(){};
 	
-	public BaseDao(Context context)
+	public BaseDao(Activity activity)
 	{
-		mContext=context;
+		mActivity=activity;
 	}
 
 	

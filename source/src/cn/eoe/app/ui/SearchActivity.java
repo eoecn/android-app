@@ -60,7 +60,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 	}
 
 	public void initView() {
-		// txtEmpty = (TextView) findViewById(R.id.txt_empty);
+//		txtEmpty = (TextView) findViewById(R.id.txt_empty);
 		btnGohome = (ImageView) findViewById(R.id.btn_gohome);
 		btnGohome.setOnClickListener(this);
 		edtSearch = (EditText) findViewById(R.id.edt_search);
@@ -69,6 +69,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 
 		loadLayout.setVisibility(View.GONE);
 		mViewPager = (ViewPager) findViewById(R.id.above_pager);
+edtSearch.setHint("即将为您搜索 " + mTag);
 		edtSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus) {
@@ -97,7 +98,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 				return false;
 			}
 		});
-		mWait = (ImageView) findViewById(R.id.search_imageview_wait);
+		mWait=(ImageView)findViewById(R.id.search_imageview_wait);
 	}
 
 	public void initViewPager() {
@@ -125,7 +126,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 			Map<String, Object> map = new HashMap<String, Object>();
 			if ((categoryList = searchDao.mapperJson()) != null) {
 				categorys = searchDao.getCategorys();
-				// map.put("tabs", categorys);
+//				map.put("tabs", categorys);
 				map.put("list", categoryList);
 				return map;
 			} else {
@@ -147,16 +148,16 @@ public class SearchActivity extends BaseFragmentActivity implements
 			if (result == null) {
 				mBasePageAdapter.addNullFragment();
 				loadLayout.setVisibility(View.GONE);
-				// txtEmpty.setVisibility(View.VISIBLE);
+//				txtEmpty.setVisibility(View.VISIBLE);
 				return;
 			}
 			if (searchDao.getHasChild()) {
 				mBasePageAdapter.addFragment((List) result.get("list"));
 				loadLayout.setVisibility(View.GONE);
-				// txtEmpty.setVisibility(View.GONE);
+//				txtEmpty.setVisibility(View.GONE);
 			} else {
 				mWait.setVisibility(View.VISIBLE);
-
+				
 			}
 			mBasePageAdapter.notifyDataSetChanged();
 			mViewPager.setCurrentItem(0);

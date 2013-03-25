@@ -6,20 +6,23 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 
-import android.content.Context;
+import android.app.Activity;
+import android.util.Log;
 import cn.eoe.app.config.Constants;
+import cn.eoe.app.config.Urls;
 import cn.eoe.app.entity.DetailJson;
 import cn.eoe.app.entity.DetailResponseEntity;
 import cn.eoe.app.utils.RequestCacheUtil;
+import cn.eoe.app.utils.Utility;
 
 public class DetailDao extends BaseDao {
 	
 	private String mUrl;
 	
-	public DetailDao(Context context,String url)
+	public DetailDao(Activity activity,String url)
 	{
-		super(context);
-		mUrl=url;
+		super(activity);
+		mUrl=url+ Utility.getScreenParams(mActivity);
 	}
 	
 	private DetailResponseEntity mDetailResponseEntity;
@@ -34,9 +37,10 @@ public class DetailDao extends BaseDao {
 	
 	public DetailResponseEntity mapperJson(boolean useCache){
 		try {
-			String result = RequestCacheUtil.getRequestContent(mContext,
+			String result = RequestCacheUtil.getRequestContent(mActivity,
 					mUrl, Constants.WebSourceType.Json,
 					Constants.DBContentType.Content_content, useCache);
+			Log.i("info",mUrl);
 			DetailJson detailJson = mObjectMapper.readValue(result, new TypeReference<DetailJson>() {});
 			this.mDetailResponseEntity = detailJson.getResponse();
 			return this.mDetailResponseEntity;

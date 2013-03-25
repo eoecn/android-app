@@ -3,6 +3,10 @@ package cn.eoe.app.utils;
 import java.security.SecureRandom;
 import java.util.Date;
 
+import android.app.Activity;
+import android.content.Context;
+import android.util.DisplayMetrics;
+
 public class Utility {
 	private static final int MAX_NONCE = 0 + 10;
 
@@ -45,7 +49,8 @@ public class Utility {
 		return i;
 	}
 
-	private static String getAPIsig(String key,long timestamp, String nonce,String uid) {
+	private static String getAPIsig(String key, long timestamp, String nonce,
+			String uid) {
 		// api_sig =
 		// MD5("api_key"+@api_key+"nonce"+@nonce+"timestamp"+@timestamp)
 		String result = null;
@@ -63,25 +68,43 @@ public class Utility {
 
 	/**
 	 * &…………………………
+	 * 
 	 * @param key
 	 * @return
 	 */
 	public static String getParams(String key) {
-		String[] temp=key.split(":");
-		long timestamp = getTimestamp();
-		String nonce = getNonce();
-		String api_sign=getAPIsig(key, timestamp, nonce, temp[1]);
-		
-		StringBuilder builder = new StringBuilder();
 		String result = "";
-		synchronized (result) {
-			builder.append(String.format("&" + LABEL_UID + "=%s", temp[1]));
-			builder.append(String.format("&" + LABEL_NONCE + "=%s", nonce));
-			builder.append(String.format("&" + LABEL_TIME + "=%s", timestamp));
-			builder.append(String.format("&"+LABEL_App_sign+"=%s", api_sign));
-			result=builder.toString();
-			builder.delete(0, builder.length());
+		try {
+			String[] temp = key.split(":");
+			long timestamp = getTimestamp();
+			String nonce = getNonce();
+			String api_sign = getAPIsig(key, timestamp, nonce, temp[1]);
+			
+			StringBuilder builder = new StringBuilder();
+
+			synchronized (result) {
+				builder.append(String.format("&" + LABEL_UID + "=%s", temp[1]));
+				builder.append(String.format("&" + LABEL_NONCE + "=%s", nonce));
+				builder.append(String.format("&" + LABEL_TIME + "=%s",
+						timestamp));
+				builder.append(String.format("&" + LABEL_App_sign + "=%s",
+						api_sign));
+				result = builder.toString();
+				builder.delete(0, builder.length());
+			}
+			return result;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "";
 		}
-		return result;
+	}
+
+	public static String getScreenParams(Activity activity) {
+		DisplayMetrics dm = new DisplayMetrics();
+		activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+		return "&screen="
+				+ (dm.heightPixels > dm.widthPixels ? dm.widthPixels + "*"
+						+ dm.heightPixels : dm.heightPixels + "*"
+						+ dm.widthPixels);
 	}
 }

@@ -19,13 +19,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import cn.eoe.app.R;
+import cn.eoe.app.biz.BlogsDao;
 import cn.eoe.app.entity.BlogContentItem;
 import cn.eoe.app.entity.BlogsCategoryListEntity;
 import cn.eoe.app.entity.BlogsMoreResponse;
 import cn.eoe.app.https.HttpUtils;
-import cn.eoe.app.utils.CommonUtil;
 import cn.eoe.app.utils.ImageUtil;
 
 /**
@@ -51,9 +50,6 @@ public class BlogFragment extends BaseListFragment {
 			case 0:
 				more_url = loadMoreEntity.getMore_url();
 				mAdapter.appendToList(loadMoreEntity.getItems());
-				break;
-			case -1:
-				Toast.makeText(getActivity(), "网络请求失败 ,请检查网络 ",Toast.LENGTH_LONG ).show();
 				break;
 			}
 			onLoad();
@@ -160,7 +156,8 @@ public class BlogFragment extends BaseListFragment {
 			holder.header_.setText(item.getName());
 			holder.title_.setText(item.getTitle());
 			holder.short_.setText(item.getShort_content());
-			String url = item.getHead_image_url();
+			String url = item.getHead_image_url().replaceAll("=small",
+					"=middle");
 			if (url.equals(null) || url.equals("")) {
 				holder.img_thu.setVisibility(View.GONE);
 			} else {
@@ -189,9 +186,7 @@ public class BlogFragment extends BaseListFragment {
 	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
-		if(!CommonUtil.getNetworkStatus(getActivity())){
-			mHandler.sendEmptyMessage(-1);
-		}else if (more_url.equals(null) || more_url.equals("")) {
+		if (more_url.equals(null) || more_url.equals("")) {
 			mHandler.sendEmptyMessage(1);
 			return;
 		} else {
@@ -199,25 +194,11 @@ public class BlogFragment extends BaseListFragment {
 			new Thread() {
 				@Override
 				public void run() {
-					BlogsMoreResponse response;
-					try {
-						response = mMapper.readValue(
-								HttpUtils.getByHttpClient(mActivity, more_url),
-								new TypeReference<BlogsMoreResponse>() {
-								});
-						if (response != null) {
-							loadMoreEntity = response.getResponse();
-							mHandler.sendEmptyMessage(0);
-						}
-					} catch (JsonParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (JsonMappingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					BlogsMoreResponse response = new BlogsDao(mActivity)
+							.getMore(more_url);
+					if (response != null) {
+						loadMoreEntity = response.getResponse();
+						mHandler.sendEmptyMessage(0);
 					}
 				}
 			}.start();

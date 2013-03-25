@@ -21,9 +21,11 @@ public class UserLogOutFragment extends Fragment implements OnClickListener {
 
 	private Context mContext;
 	private Activity mActivity;
+	private boolean isShowtxt;
 
-	public UserLogOutFragment(Activity activity) {
+	public UserLogOutFragment(Activity activity,boolean isshow) {
 		mActivity = activity;
+		isShowtxt=isshow;
 	}
 
 	@Override
@@ -35,6 +37,7 @@ public class UserLogOutFragment extends Fragment implements OnClickListener {
 		View view = inflater.inflate(R.layout.user_login_log_out, null);
 		btnLogOut = (Button) view.findViewById(R.id.user_button_logOut);
 		mtxt = (TextView) view.findViewById(R.id.user_textview_error);
+		showText(isShowtxt);
 		btnLogOut.setOnClickListener(this);
 		return view;
 	}

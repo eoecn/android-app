@@ -111,9 +111,13 @@ public class DetailsDiscussActivity extends BaseActivity implements
 				@Override
 				public void loadImage(Bitmap bitmap, String imagePath) {
 					// TODO Auto-generated method stub
-					ImageView img = (ImageView) mListview
-							.findViewWithTag(imagePath);
-					img.setImageBitmap(bitmap);
+					try {
+						ImageView img = (ImageView) mListview
+								.findViewWithTag(imagePath);
+						img.setImageBitmap(bitmap);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			};
 		};

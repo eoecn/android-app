@@ -43,7 +43,8 @@
         </FrameLayout>
 
         <include layout="@layout/loading_layout" />
-        <include layout="@layout/load_failed_layout"/>
+
+        <include layout="@layout/load_failed_layout" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/above_pager"
@@ -52,7 +53,7 @@
             android:background="#f5f5f5"
             android:visibility="gone" />
     </LinearLayout>
-
+    
     <include
         android:id="@+id/main_title"
         layout="@layout/above_title" />

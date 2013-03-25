@@ -113,8 +113,8 @@ public class UserIntroFragment extends Fragment {
 	private void setControl() {
 		txtName.setText(mUserResponse.getInfo().getName());
 		txtRegTime.setText(mUserResponse.getInfo().getReg_at());
-		txtEP.setText("e币:" + mUserResponse.getInfo().getEoe_p());
-		txtEM.setText("e望:" + mUserResponse.getInfo().getEoe_m());
+		txtEP.setText("e币:" + mUserResponse.getInfo().getEoe_m());
+		txtEM.setText("e望:" + mUserResponse.getInfo().getEoe_p());
 		String imgUrl = mUserResponse.getInfo().getHead_image_url()
 				.replaceAll("(?<==)small", "middle");
 		ImageUtil.setThumbnailView(imgUrl, img, mContext,

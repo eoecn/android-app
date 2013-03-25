@@ -1,5 +1,8 @@
 package cn.eoe.app.ui;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
@@ -10,6 +13,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -103,6 +107,8 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 		this.mWebView.setBackgroundResource(R.color.detail_bgColor);
 		mWebView.getSettings().setLoadsImagesAutomatically(true);
 		mWebView.getSettings().setBuiltInZoomControls(true);
+		mWebView.getSettings().setJavaScriptEnabled(true);
+		mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 
 		good.setOnClickListener(this);
 		bed.setOnClickListener(this);
@@ -199,7 +205,7 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 		private boolean mUseCache;
 
 		public MyTask() {
-			mUseCache = true;
+			mUseCache = false;
 		}
 
 		public MyTask(boolean useCache) {
@@ -222,23 +228,24 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 			super.onPostExecute(result);
 			if (result != null) {
 				mWebView.setBackgroundResource(R.color.detail_bgColor);
-				mWebView.loadDataWithBaseURL(null, responseEntity.getContent(),
-						"text/html", "utf-8", null);
 			}
-			String content = null;
+			String linkCss = "<link rel=\"stylesheet\" href=\"file:///android_asset/pygments.css\" type=\"text/css\"/>";
+			String content = linkCss + result;
 			try {
-				content = result.replace(
+				content = content.replace(
 						"img{}",
 						"img{width:"
 								+ CommonUtil.px2dip(DetailsActivity.this,
 										screen_width) + "}");
-
+				content = content.replaceAll("<br />", "");
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
 			loadLayout.setVisibility(View.GONE);
 			mWebView.setVisibility(View.VISIBLE);
 			mWebView.setBackgroundResource(R.color.detail_bgColor);
+			int a = Integer.valueOf(android.os.Build.VERSION.SDK);
+			Log.i("info", a + "");
 			mWebView.loadDataWithBaseURL(null, content, "text/html", "utf-8",
 					null);
 		}
@@ -247,7 +254,8 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		if(responseEntity==null)return;
+		if (responseEntity == null)
+			return;
 		if (mKey.equals(null) || mKey.equals("")) {
 			showLongToast(getResources().getString(R.string.user_login_prompt));
 			return;
@@ -274,7 +282,8 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 							"discuss_list", responseEntity.getBar()
 									.getComment().getGet()),
 					new BasicNameValuePair("discuss", responseEntity.getBar()
-							.getComment().getSubmit()),new BasicNameValuePair("title",mTitle));
+							.getComment().getSubmit()), new BasicNameValuePair(
+							"title", mTitle));
 			break;
 		}
 		if (url != null) {
@@ -346,9 +355,14 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 				if (result) {
 					IsCollect = !IsCollect;
 					initCollect(IsCollect);
-					showShortToast("收藏成功");
+					if (IsCollect) {
+						showShortToast("收藏成功");
+					} else {
+						showShortToast("取消收藏成功");
+					}
+
 				} else {
-					showShortToast("收藏失败");
+					showShortToast("收藏操作失败");
 				}
 				break;
 			}

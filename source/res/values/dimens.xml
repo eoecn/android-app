@@ -47,7 +47,7 @@
 	<dimen name="user_icon_height">80dp</dimen>
 	
 	<!-- 弹出框 -->
-	<dimen name="popupWindow_width">300dp</dimen>
+	<dimen name="popupWindow_width">120dp</dimen>
 	<dimen name="popupWindow_margin">20dp</dimen>
 	
 	<!-- 用户信息图标宽度 -->

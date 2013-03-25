@@ -22,33 +22,32 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#d4d4d4" >
+        android:padding="8dp"
+        android:background="#d4d4d4"
+        android:minHeight="50dp" >
 
         <EditText
             android:id="@+id/details_edittext_discuss"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="left|center"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="12dp"
+            android:layout_gravity="left|bottom|top"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="80dp"
-            android:layout_marginTop="8dp"
             android:background="@drawable/back_textview_style"
             android:drawableLeft="@drawable/dis_details_show"
             android:hint="@string/detail_prompt"
+            android:maxLines="3"
             android:textColor="#000"
             android:textCursorDrawable="@color/black" />
 
         <Button
             android:id="@+id/details_button_enter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center"
-            android:layout_marginBottom="8dp"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_gravity="right|bottom"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="8dp"
             android:background="@drawable/back_submit_style"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"

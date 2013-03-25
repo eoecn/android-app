@@ -71,7 +71,7 @@ public class UserCollectFragment extends Fragment {
 		LayoutParams layout = new LayoutParams(width, LayoutParams.MATCH_PARENT);
 		tv.setLayoutParams(layout);
 		if (i == 0) {
-			tv.setBackgroundResource(R.drawable.back_collect_bottom_corner_left);
+			tv.setBackgroundResource(R.drawable.dis_usercollect_left);
 			mLinearLayout.setTag(tv);
 		}
 		tv.setGravity(Gravity.CENTER);
@@ -91,9 +91,9 @@ public class UserCollectFragment extends Fragment {
 				}
 				mLinearLayout.setTag(v);
 				if (i == 0) {
-					v.setBackgroundResource(R.drawable.back_collect_bottom_corner_left);
+					v.setBackgroundResource(R.drawable.dis_usercollect_left);
 				} else if (i == mUserResponse.getFavorite().size() - 1) {
-					v.setBackgroundResource(R.drawable.back_collect_bottom_corner_right);
+					v.setBackgroundResource(R.drawable.dis_usercollect_right);
 				}
 			}
 		});

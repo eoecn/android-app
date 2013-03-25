@@ -5,6 +5,7 @@
 
     <scale
         android:duration="200"
+        android:fillEnabled="true"
         android:fromXScale="1.0"
         android:fromYScale="1.0"
         android:interpolator="@android:anim/accelerate_interpolator"
@@ -14,6 +15,7 @@
         android:toYScale="0.0030" />
     <scale
         android:duration="200"
+        android:fillEnabled="true"
         android:fromXScale="1.0"
         android:fromYScale="1.0"
         android:interpolator="@android:anim/accelerate_interpolator"

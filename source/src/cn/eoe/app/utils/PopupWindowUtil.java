@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,17 +27,21 @@ public class PopupWindowUtil<T> implements OnClickListener {
 		mViewpager = viewpager;
 	}
 
+	int width = 0;
+
 	public void showActionWindow(View parent, Context context, List<T> tabs) {
 		// final RingtoneclipModel currentData = model;
 		// final int res_id = currentData.getId();
 		int[] location = new int[2];
-		int popWidth = 300;
+		int popWidth = context.getResources().getDimensionPixelOffset(
+				R.dimen.popupWindow_width);
 		parent.getLocationOnScreen(location);
 		View view = getView(context, tabs);
-		popupWindow = new PopupWindow(view, popWidth, LayoutParams.WRAP_CONTENT);// new
-																					// PopupWindow(view,
-																					// popWidth,
-																					// LayoutParams.WRAP_CONTENT);
+		popupWindow = new PopupWindow(view, popWidth,
+				LayoutParams.WRAP_CONTENT);// new
+											// PopupWindow(view,
+											// popWidth,
+											// LayoutParams.WRAP_CONTENT);
 		popupWindow.setFocusable(true);
 		popupWindow.setOutsideTouchable(true);
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -91,6 +96,7 @@ public class PopupWindowUtil<T> implements OnClickListener {
 		btn.setText(text);
 		btn.setTextColor(context.getResources().getColor(R.color.white));
 		btn.setTag(i);
+		btn.setPadding(20, 15, 20, 15);
 		btn.setBackgroundColor(Color.TRANSPARENT);
 		btn.setOnClickListener(this);
 		return btn;

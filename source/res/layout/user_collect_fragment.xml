@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/back_collect_bottom_corner"
+            android:background="@drawable/dis_usercollect_menu"
             android:orientation="horizontal"
             android:divider="@drawable/dis_behind_verticalside" >
         </LinearLayout>

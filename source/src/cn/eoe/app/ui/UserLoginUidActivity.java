@@ -1,4 +1,4 @@
-package cn.eoe.app.ui;
+ package cn.eoe.app.ui;
 
 import org.json.JSONObject;
 
@@ -135,6 +135,8 @@ public class UserLoginUidActivity extends BaseActivity implements
 				edit.putString(PWD, editPwd.getText().toString());
 				edit.putString(KEY, key);
 				edit.commit();
+				IntentUtil.start_activity(UserLoginUidActivity.this, UserCenterActivity.class);
+				finish();
 			} else {
 				showLongToast(getResources().getString(
 						R.string.user_login_error));

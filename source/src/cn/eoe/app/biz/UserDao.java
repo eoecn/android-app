@@ -7,12 +7,10 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 
 import android.content.Context;
-import cn.eoe.app.config.Constants;
 import cn.eoe.app.config.Urls;
 import cn.eoe.app.entity.UserJson;
 import cn.eoe.app.entity.UserResponse;
 import cn.eoe.app.https.HttpUtils;
-import cn.eoe.app.utils.RequestCacheUtil;
 import cn.eoe.app.utils.Utility;
 
 public class UserDao extends BaseDao {
@@ -26,9 +24,12 @@ public class UserDao extends BaseDao {
 		// TODO Auto-generated method stub
 		UserJson userJson;
 		try {
+			if (!key.contains(":")) {
+				return null;
+			}
 			String url = String.format(Urls.KEYBindURL, key)
 					+ Utility.getParams(key);
-			String result =HttpUtils.getByHttpClient(mContext, url);
+			String result = HttpUtils.getByHttpClient(mContext, url);
 			userJson = mObjectMapper.readValue(result,
 					new TypeReference<UserJson>() {
 					});

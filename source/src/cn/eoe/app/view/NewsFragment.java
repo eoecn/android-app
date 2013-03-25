@@ -21,13 +21,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import cn.eoe.app.R;
+import cn.eoe.app.biz.NewsDao;
 import cn.eoe.app.entity.NewsCategoryListEntity;
 import cn.eoe.app.entity.NewsContentItem;
 import cn.eoe.app.entity.NewsMoreResponse;
 import cn.eoe.app.https.HttpUtils;
-import cn.eoe.app.utils.CommonUtil;
 import cn.eoe.app.utils.ImageUtil;
 
 @SuppressLint("NewApi")
@@ -49,12 +48,6 @@ public class NewsFragment extends BaseListFragment {
 			case 0:
 				more_url = loadMoreEntity.getMore_url();
 				mAdapter.appendToList(loadMoreEntity.getItems());
-				break;
-			case 1:
-				Toast.makeText(getActivity(), "已经加载全部 ",Toast.LENGTH_LONG ).show();
-				break;
-			case -1:
-				Toast.makeText(getActivity(), "网络请求失败 ,请检查网络 ",Toast.LENGTH_LONG ).show();
 				break;
 			}
 			onLoad();
@@ -90,7 +83,8 @@ public class NewsFragment extends BaseListFragment {
 				// TODO Auto-generated method stub
 				NewsContentItem item = (NewsContentItem) mAdapter
 						.getItem(position - 1);
-				startDetailActivity(mActivity, item.getDetail_url(), "资讯", item.getTitle());
+				startDetailActivity(mActivity, item.getDetail_url(), "资讯",
+						item.getTitle());
 			}
 		});
 		return view;
@@ -151,7 +145,7 @@ public class NewsFragment extends BaseListFragment {
 			holder.title_.setText(item.getTitle());
 			holder.short_.setText(item.getShort_content());
 			String img_url = item.getThumbnail_url();
-			if (img_url.equals(null)||img_url.equals("")) {
+			if (img_url.equals(null) || img_url.equals("")) {
 				holder.img_thu.setVisibility(View.GONE);
 			} else {
 				holder.img_thu.setVisibility(View.VISIBLE);
@@ -177,9 +171,7 @@ public class NewsFragment extends BaseListFragment {
 	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
-		if(!CommonUtil.getNetworkStatus(getActivity())){
-			mHandler.sendEmptyMessage(-1);
-		}else if (more_url.equals(null)||more_url.equals("")) {
+		if (more_url.equals(null) || more_url.equals("")) {
 			mHandler.sendEmptyMessage(1);
 			return;
 		} else {
@@ -188,29 +180,11 @@ public class NewsFragment extends BaseListFragment {
 
 				@Override
 				public void run() {
-					NewsMoreResponse response;
-					try {
-						response = mMapper.readValue(
-								HttpUtils.getByHttpClient(mActivity, more_url),
-								new TypeReference<NewsMoreResponse>() {
-								});
-						if (response != null) {
-							loadMoreEntity = response.getResponse();
-							mHandler.sendEmptyMessage(0);
-
-						}
-					} catch (JsonParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (JsonMappingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (RuntimeException e){
-						e.printStackTrace();
-						Toast.makeText(getActivity(), "网络请求失败 ,请检查网络 ",Toast.LENGTH_LONG ).show();
+					NewsMoreResponse response = new NewsDao(mActivity)
+							.getMore(more_url);
+					if (response != null) {
+						loadMoreEntity = response.getResponse();
+						mHandler.sendEmptyMessage(0);
 					}
 					super.run();
 				}

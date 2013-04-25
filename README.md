@@ -16,7 +16,7 @@ android-app
 target=android-15
 ## **一、工程目录结构** ##
 根目录<br>
->├ src <br>
+>├ src  <br> 
 >├ libs <br>
 >├ res <br>
 >├ AndroidManifest.xml <br>
@@ -31,23 +31,23 @@ src目录用于存放工程的包及java源码文件。
 
 > src <br>
 
->├ cn.eoe.app <br>
->├ cn.eoe.app.adapter <br>
->├ cn.eoe.app.adapter.base <br>
->├ cn.eoe.app.biz <br>
->├ cn.eoe.app.config <br>
->├ cn.eoe.app.db <br>
->├ cn.eoe.app.db.biz <br>
->├ cn.eoe.app.entity <br>
->├ cn.eoe.app.entity.base <br>
->├ cn.eoe.app.https <br>
->├ cn.eoe.app.indicator <br>
->├ cn.eoe.app.slidingmenu <br>
->├ cn.eoe.app.ui <br>
->├ cn.eoe.app.ui.base <br>
->├ cn.eoe.app.utils <br>
->├ cn.eoe.app.view <br>
->├ cn.eoe.app.widget <br>
+>├ cn.eoe.app --存放程序全局性类的包<br>
+>├ cn.eoe.app.adapter --存放适配器的实现类的包 <br>
+>├ cn.eoe.app.adapter.base --存放适配器基类的包<br>
+>├ cn.eoe.app.biz --存放ＤＡＯ类的包<br>
+>├ cn.eoe.app.config －－存放常量，配置和api接口等类的包<br>
+>├ cn.eoe.app.db --关于sqlite操作相关的类的包<br>
+>├ cn.eoe.app.db.biz --详细的增删改查类的包，暂时仅有一个类<br>
+>├ cn.eoe.app.entity --实体类包<br>
+>├ cn.eoe.app.entity.base --实体类基类包<br>
+>├ cn.eoe.app.https --网络访问相关类的包<br>
+>├ cn.eoe.app.indicator --导航相关的类包<br>
+>├ cn.eoe.app.slidingmenu --滑动菜单相关类包<br>
+>├ cn.eoe.app.ui --界面相关的包，activity的类<br>
+>├ cn.eoe.app.ui.base --activity相关的基类包<br>
+>├ cn.eoe.app.utils --工具类包<br>
+>├ cn.eoe.app.view --Fragment相关类的包<br>
+>├ cn.eoe.app.widget --自定义view组件包<br>
 
  
 **2、libs目录** <br>
@@ -79,7 +79,7 @@ res <br>
 >├ values <br>
 >└ values-zh <br>
 
-4、AndroidManifest.xml
+**4、AndroidManifest.xml**
 AndroidManifest.xml用于设置应用程序的版本、主题、用户权限及注册Activity等组件及其他配置。
 
 ## **二、程序功能流程** ##

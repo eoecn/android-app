@@ -8,10 +8,10 @@ android-app
 
 *注：本文假设你已经有Android开发环境*
 
-
+本文以eclipse为例<br>
 启动Eclipse，导入Android客户端项目，请确保你当前的Android SDK是最新版。
 如果编译出错，请修改项目根目录下的 project.properties 文件。
-推荐使用Android 4.0 以上版本的SDK：
+推荐使用Android 4.0 以上版本的SDK：<br>
 
 target=android-15
 ## **一、工程目录结构** ##
@@ -72,7 +72,7 @@ res <br>
 >├ drawable-ldpi <br>
 >├ drawable-mdpi <br>
 >├ drawable-xhdpi <br>
->├ interpolator
+>├ interpolator<br>
 >├ layout <br>
 >├ menu <br>
 >├ raw <br>
@@ -90,7 +90,7 @@ AndroidManifest.xml注册的启动Activity是"cn.eoe.app.ui.SplashActivity"，�
 Activity是“cn.eoe.app.ui.MainActivity”
 
 
-2、APP访问流程
+
 
  
 

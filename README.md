@@ -93,7 +93,7 @@ res <br>
 >├ values <br>
 >└ values-zh <br>
 
-**4、AndroidManifest.xml**
+**4、AndroidManifest.xml**<br>
 AndroidManifest.xml用于设置应用程序的版本、主题、用户权限及注册Activity等组件及其他配置。
 
 ## **三、程序功能流程** ##

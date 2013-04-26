@@ -16,7 +16,7 @@ android-app
 如果编译出错，请修改项目根目录下的 project.properties 文件。
 推荐使用Android 4.0 以上版本的SDK：<br>
 
-target=android-15
+target=android-14
 ## **一、工程目录结构** ##
 根目录<br>
 >├ src  <br> 

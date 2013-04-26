@@ -93,7 +93,7 @@ AndroidManifest.xml注册的启动Activity是"cn.eoe.app.ui.SplashActivity"，�
 Activity是“cn.eoe.app.ui.MainActivity”
 
 
-**2.程序功能**
+**2.程序功能**<br>
  (1)社区精选<br>
  (2)新闻资讯<br>
  (3)学习教程<br>

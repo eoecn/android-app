@@ -3,6 +3,9 @@ android-app
 
 本项目采用 GPL 授权协议，欢迎大家在这个基础上进行改进，并与大家分享。
 
+如您感觉本项目中有不妥之处或者有不爽的地方，欢迎提交问题或更改方案，项目小组会
+及时的对您提交的修改给予反馈。希望能为开发者提供一款开源好用的Android版客户端产品。
+一款好产品需要大家共同努力，大家共勉！
 
 # **eoe社区 Android 客户端项目简析** #
 
@@ -56,9 +59,9 @@ libs目录用于存放项目引用的第三方jar包。
 libs目录里的jar包文件：
 
 libs
->|- android-support-v4.jar <br>
-jackson-all-1.9.2.jar <br>
-umeng_sdk.jar <br>
+>|- android-support-v4.jar --v4兼容包<br>
+>|jackson-all-1.9.2.jar --解析json的包<br>
+>|umeng_sdk.jar --友盟的sdk<br>
 
 **3、res目录** <br>
 res目录存放工程用到的图片、布局、样式等资源文件。<br>

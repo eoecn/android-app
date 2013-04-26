@@ -83,13 +83,18 @@ res <br>
 AndroidManifest.xml用于设置应用程序的版本、主题、用户权限及注册Activity等组件及其他配置。
 
 ## **二、程序功能流程** ##
-1、APP启动流程
+**1、APP启动流程**
 
 AndroidManifest.xml注册的启动Activity是"cn.eoe.app.ui.SplashActivity"，然后进入到主界面，对应的
 
 Activity是“cn.eoe.app.ui.MainActivity”
 
 
+**2.程序功能**
+ (1)社区精选<br>
+ (2)新闻资讯<br>
+ (3)学习教程<br>
+ (4)社区博客<br>
 
 
  

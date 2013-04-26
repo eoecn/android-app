@@ -16,15 +16,26 @@ android-app
 如果编译出错，请修改项目根目录下的 project.properties 文件。
 推荐使用Android 4.0 以上版本的SDK：<br>
 
-target=android-15
+target=android-14
 ## **一、工程目录结构** ##
 根目录<br>
+>├ source  <br> 
+>├ LICENCE.txt <br>
+>├ README.md <br>
+
+目录简要解释<br>
+根目录<br>
+>├ source --源代码 <br> 
+>├ LICENCE.txt --开源协议 <br>
+>├ README.md --项目帮助及项目信息 <br>
+
+## **二、源代码目录结构** ##
+source<br>
 >├ src  <br> 
 >├ libs <br>
 >├ res <br>
 >├ AndroidManifest.xml <br>
->├ LICENSE.txt <br>
->├ proguard.cfg <br>
+>├ proguard-project.txt <br>
 >└ project.properties <br>
 
 **1、src目录** <br>
@@ -82,10 +93,10 @@ res <br>
 >├ values <br>
 >└ values-zh <br>
 
-**4、AndroidManifest.xml**
+**4、AndroidManifest.xml**<br>
 AndroidManifest.xml用于设置应用程序的版本、主题、用户权限及注册Activity等组件及其他配置。
 
-## **二、程序功能流程** ##
+## **三、程序功能流程** ##
 **1、APP启动流程**
 
 AndroidManifest.xml注册的启动Activity是"cn.eoe.app.ui.SplashActivity"，然后进入到主界面，对应的

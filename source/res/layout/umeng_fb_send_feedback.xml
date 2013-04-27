@@ -13,7 +13,7 @@
 		    android:layout_alignBottom="@+id/umeng_fb_see_list_btn"
 		    android:layout_alignParentLeft="true" android:layout_marginLeft="14dp"
 		    android:background="@drawable/umeng_fb_submit_selector"
-		    android:gravity="center" android:text="返回"
+		    android:gravity="center" android:text="@string/feedback_back"
 		    android:textColor="#FFFFFF" />		
 		    
 		<TextView android:id="@+id/umeng_fb_conversation_title"
@@ -34,7 +34,7 @@
 		android:layout_marginTop="7dip" android:layout_marginBottom="2dip"
 		android:paddingLeft="9dip" android:paddingTop="10dip"
 		android:layout_weight="1.0" android:maxEms="10" android:minEms="10"
-		android:hint="请输入您的反馈意见" android:gravity="top" android:textColor="#737373" />
+		android:hint="@string/feedback_input_content" android:gravity="top" android:textColor="#737373" />
 
 <!-- 用户反馈定制化 “友盟反馈”还支持反馈信息的定制化，以便在反馈页面中收集额外信息。开发者可以在此添加需要收集的用户信息。
 
@@ -89,7 +89,7 @@
 		<TextView android:id="@+id/umeng_fb_submit"
 			android:background="@drawable/umeng_fb_submit_selector"
 			android:layout_alignParentRight="true" android:layout_width="70dip"
-			android:layout_height="43dip" android:text="提交" android:gravity="center"
+			android:layout_height="43dip" android:text="@string/feedback_submit" android:gravity="center"
 			android:layout_alignBaseline="@id/umeng_fb_age_spinner"
 			android:textColor="#FFFFFF" android:layout_marginRight="8dip" />
 	</RelativeLayout>

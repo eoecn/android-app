@@ -145,13 +145,13 @@ public class UserCenterActivity extends BaseFragmentActivity implements
 				UserLogOutFragment fragment=new UserLogOutFragment(
 						UserCenterActivity.this,true);
 				
-				mTabsAdapter.addTab("获取信息错误",fragment );
+				mTabsAdapter.addTab(getString(R.string.user_center_get_info_error),fragment );
 				return;
 			}
-			mTabsAdapter.addTab("我的收藏", new UserCollectFragment(result,
+			mTabsAdapter.addTab(getString(R.string.user_center_my_Collect), new UserCollectFragment(result,
 					UserCenterActivity.this));
-			mTabsAdapter.addTab("个人简介", new UserIntroFragment(result));
-			mTabsAdapter.addTab("退出功能", new UserLogOutFragment(
+			mTabsAdapter.addTab(getString(R.string.user_center_my_Intro), new UserIntroFragment(result));
+			mTabsAdapter.addTab(getString(R.string.user_center_exit), new UserLogOutFragment(
 					UserCenterActivity.this,false));
 			mTabsAdapter.notifyDataSetChanged();
 			mViewPager.setCurrentItem(1);

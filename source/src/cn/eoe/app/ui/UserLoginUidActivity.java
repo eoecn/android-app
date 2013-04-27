@@ -84,8 +84,10 @@ public class UserLoginUidActivity extends BaseActivity implements
 	private void checkUsername(String name, String pwd) {
 		if (TextUtils.isEmpty(name)) {
 			showShortToast(getResources().getString(R.string.user_username));
+			return;
 		} else if (TextUtils.isEmpty(pwd)) {
 			showShortToast(getResources().getString(R.string.user_pwd));
+			return;
 		}
 		String loginUser = String.format(Urls.USER_LOGIN, name, pwd);
 		new LoginAsyncTask().execute(loginUser);

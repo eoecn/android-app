@@ -1,7 +1,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Light" />
-    
+
+    <style name="splash_style" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:background">@drawable/splash_load</item>
+    </style>
+
     <style name="behind_button_style">
         <item name="android:textColor">#000</item>
         <item name="android:textSize">@dimen/user_alert_size</item>
@@ -14,4 +18,5 @@
         <item name="android:scaleType">fitCenter</item>
         <item name="android:background">@drawable/back_button_default_style</item>
     </style>
+
 </resources>

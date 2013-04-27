@@ -371,36 +371,43 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	/**
 	 * 连续按两次返回键就退出
 	 */
-	private boolean isWaitingExit = false;
+	private int keyBackClickCount=0;
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		keyBackClickCount=0;
+	}
+	
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-			if (isWaitingExit) {
-				isWaitingExit = false;
-				mFrameTv.setVisibility(0);
-				mImgTv.setVisibility(0);
-				Animation anim = AnimationUtils.loadAnimation(
-						MainActivity.this, R.anim.tv_off);
-				anim.setAnimationListener(new tvOffAnimListener());
-				mImgTv.startAnimation(anim);
-
-			} else {
-				Toast.makeText(this,
-						getResources().getString(R.string.press_again_exit),
-						Toast.LENGTH_SHORT).show();
-				isWaitingExit = true;
-				Timer timer = new Timer();
-				timer.schedule(new TimerTask() {
-					@Override
-					public void run() {
-						isWaitingExit = false;
-					}
-				}, 3000);
-				return true;
+			switch (keyBackClickCount++) {
+				case 0:
+					Toast.makeText(this,
+							getResources().getString(R.string.press_again_exit),
+							Toast.LENGTH_SHORT).show();
+					Timer timer = new Timer();
+					timer.schedule(new TimerTask() {
+						@Override
+						public void run() {
+							keyBackClickCount=0;
+						}
+					}, 3000);
+					break;
+				case 1:
+					mFrameTv.setVisibility(0);
+					mImgTv.setVisibility(0);
+					Animation anim = AnimationUtils.loadAnimation(
+							MainActivity.this, R.anim.tv_off);
+					anim.setAnimationListener(new tvOffAnimListener());
+					mImgTv.startAnimation(anim);
+					break;
+				default:
+					break;
 			}
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_MENU) {

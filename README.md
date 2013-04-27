@@ -115,6 +115,7 @@ Activity是“cn.eoe.app.ui.MainActivity”
 
 # **参与贡献** #
 android-app项目设置2-3名管理者，目前的管理者是
+- cuijie(ghlimbrother)
 - com360
 - Iceskysl
 

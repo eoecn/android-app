@@ -5,12 +5,14 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import cn.eoe.app.R;
 import cn.eoe.app.biz.UserDao;
 import cn.eoe.app.https.HttpUtils;
@@ -76,6 +78,11 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.user_login_bind:
+		    String key = editKey.getText().toString().trim();
+		    if(TextUtils.isEmpty(key)) {
+		        Toast.makeText(this, R.string.user_login_enter_key, Toast.LENGTH_SHORT).show();
+		        break;
+		    }
 			new LoginAsyncTask().execute();
 			break;
 		}

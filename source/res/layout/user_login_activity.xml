@@ -58,7 +58,18 @@
                     android:text="@string/user_bind_btn"
                     android:textColor="#fff" />
             </LinearLayout>
-
+            
+			<Button
+                    android:id="@+id/scan_user_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/back_submit_style"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/user_qr_scan_btn"
+                    android:textColor="#fff" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

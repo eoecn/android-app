@@ -12,13 +12,12 @@
 
 package cn.eoe.app.utils;
 
-import org.apache.http.impl.auth.UnsupportedDigestAlgorithmException;
-
-
-import android.util.Log;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import org.apache.http.impl.auth.UnsupportedDigestAlgorithmException;
+
+import android.util.Log;
 
 /**
  * @author Wongxming E-mail: Wongxming@eoemobile.com

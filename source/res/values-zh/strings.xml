@@ -42,6 +42,7 @@
     <string name="user_user_empty">用户名不能为空!</string>
     <string name="user_pwd_empty">密码不能为空!</string>
     <string name="user_login_prompt">请先登录</string>
+    <string name="user_login_enter_key">请先输入密钥</string>
 
     <!-- 上拉下拉 -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
@@ -77,4 +78,16 @@
     <string name="discuss_fail">发表失败</string>
     <string name="query_prompt">请输入关键字</string>
 
+    <!-- 用户反馈 -->
+    <string name="feedback_submit">提交</string>
+    <string name="feedback_input_content">请输入您的反馈意见</string>
+    <string name="feedback_back">返回</string>
+
+    <!-- 用户中心 -->
+    <string name="user_center_get_info_error">获取信息错误</string>
+    <string name="user_center_my_Collect">我的收藏</string>
+    <string name="user_center_my_Intro">个人简介</string>
+    <string name="user_center_exit">退出功能</string>
+    <string name="user_center_e_coin">e币:%s</string>
+    <string name="user_center_e_reputation">e望:%s</string>
 </resources>

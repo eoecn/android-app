@@ -1,12 +1,12 @@
 package cn.eoe.app.ui.base;
 
-import cn.eoe.app.slidingmenu.SlidingActivityBase;
-import cn.eoe.app.slidingmenu.SlidingActivityHelper;
-import cn.eoe.app.slidingmenu.SlidingMenu;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import cn.eoe.app.slidingmenu.SlidingActivityBase;
+import cn.eoe.app.slidingmenu.SlidingActivityHelper;
+import cn.eoe.app.slidingmenu.SlidingMenu;
 
 
 public class BaseSlidingFragmentActivity extends BaseFragmentActivity implements SlidingActivityBase {

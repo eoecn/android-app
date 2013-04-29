@@ -9,7 +9,6 @@ import org.codehaus.jackson.type.TypeReference;
 import android.app.Activity;
 import cn.eoe.app.config.Constants;
 import cn.eoe.app.config.Urls;
-import cn.eoe.app.entity.NewsMoreResponse;
 import cn.eoe.app.entity.WikiJson;
 import cn.eoe.app.entity.WikiMoreResponse;
 import cn.eoe.app.entity.WikiResponseEntity;

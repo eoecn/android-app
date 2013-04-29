@@ -15,7 +15,14 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-
+    <!-- zxing -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+	
     <application
         android:name=".MyApplication"
         android:icon="@drawable/ic_launcher"
@@ -91,6 +98,10 @@
             android:name="com.umeng.fb.ui.FeedbackConversation"
             android:configChanges="keyboard" />
 
+        <!-- zxing -->
+        <activity android:name="com.google.zxing.CaptureActivity"
+            android:screenOrientation="portrait"/>
+        
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="510777d152701511ea000006" />

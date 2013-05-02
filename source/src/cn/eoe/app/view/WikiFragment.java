@@ -1,12 +1,7 @@
 package cn.eoe.app.view;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.type.TypeReference;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -23,7 +18,6 @@ import cn.eoe.app.biz.WikiDao;
 import cn.eoe.app.entity.WikiCategoryListEntity;
 import cn.eoe.app.entity.WikiContentItem;
 import cn.eoe.app.entity.WikiMoreResponse;
-import cn.eoe.app.https.HttpUtils;
 
 public class WikiFragment extends BaseListFragment {
 

@@ -1,12 +1,7 @@
 package cn.eoe.app.view;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.type.TypeReference;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -24,7 +19,6 @@ import cn.eoe.app.biz.BlogsDao;
 import cn.eoe.app.entity.BlogContentItem;
 import cn.eoe.app.entity.BlogsCategoryListEntity;
 import cn.eoe.app.entity.BlogsMoreResponse;
-import cn.eoe.app.https.HttpUtils;
 import cn.eoe.app.utils.ImageUtil;
 
 /**

@@ -1,5 +1,5 @@
 package cn.eoe.app.entity;
-import cn.eoe.app.entity.base.*;
+import cn.eoe.app.entity.base.BaseContentItem;
 /**
  * 博客ListItem实体类
  * @author wangxin

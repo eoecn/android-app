@@ -9,7 +9,6 @@ import org.codehaus.jackson.type.TypeReference;
 import android.app.Activity;
 import android.util.Log;
 import cn.eoe.app.config.Constants;
-import cn.eoe.app.config.Urls;
 import cn.eoe.app.entity.DetailJson;
 import cn.eoe.app.entity.DetailResponseEntity;
 import cn.eoe.app.utils.RequestCacheUtil;

@@ -1,8 +1,5 @@
 package cn.eoe.app.ui;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 

@@ -1,7 +1,7 @@
 package cn.eoe.app.entity.base;
 import java.util.List;
 
-import cn.eoe.app.entity.*;
+import cn.eoe.app.entity.CategorysEntity;
 
 /**
  * 返回的大的json的封装 基类

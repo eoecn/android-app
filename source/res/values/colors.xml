@@ -12,4 +12,10 @@
     
     <color name="defaultTextColor">#666</color>
     
+    <!-- start zxing -->
+    <color name="viewfinder_frame">#2477ab</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+    <!-- end zxing -->
 </resources>

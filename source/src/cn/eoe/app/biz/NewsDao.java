@@ -7,15 +7,11 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import cn.eoe.app.config.Constants;
 import cn.eoe.app.config.Urls;
-import cn.eoe.app.entity.BlogsMoreResponse;
 import cn.eoe.app.entity.NewsJson;
 import cn.eoe.app.entity.NewsMoreResponse;
 import cn.eoe.app.entity.NewsResponseEntity;
-import cn.eoe.app.https.HttpUtils;
 import cn.eoe.app.utils.RequestCacheUtil;
 import cn.eoe.app.utils.Utility;
 

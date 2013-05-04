@@ -5,7 +5,7 @@
 
     <uses-sdk
         android:minSdkVersion="5"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -15,15 +15,24 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-
+    <!-- zxing -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+	
     <application
         android:name=".MyApplication"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
             android:name=".ui.SplashActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
+            android:theme="@style/splash_style"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -91,6 +100,10 @@
             android:name="com.umeng.fb.ui.FeedbackConversation"
             android:configChanges="keyboard" />
 
+        <!-- zxing -->
+        <activity android:name="com.google.zxing.CaptureActivity"
+            android:screenOrientation="portrait"/>
+        
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="510777d152701511ea000006" />
@@ -98,5 +111,4 @@
             android:name="UMENG_CHANNEL"
             android:value="Default" />
     </application>
-
 </manifest>

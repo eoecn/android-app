@@ -62,6 +62,10 @@ src目录用于存放工程的包及java源码文件。
 >├ cn.eoe.app.utils --工具类包<br>
 >├ cn.eoe.app.view --Fragment相关类的包<br>
 >├ cn.eoe.app.widget --自定义view组件包<br>
+>
+>├ com.google.zxing.camera --第三方定义，控制摄像头包<br>
+>├ com.google.zxing.decoding -- 二维码图像解码包<br>
+>├ com.google.zxing.view -- 自定义View，控制拍摄取景框和动画等<br>
 
  
 **2、libs目录** <br>
@@ -70,9 +74,10 @@ libs目录用于存放项目引用的第三方jar包。
 libs目录里的jar包文件：
 
 libs
->|- android-support-v4.jar --v4兼容包<br>
->|jackson-all-1.9.2.jar --解析json的包<br>
->|umeng_sdk.jar --友盟的sdk<br>
+>├  android-support-v4.jar --v4兼容包<br>
+>├ jackson-all-1.9.2.jar --解析json的包<br>
+>├ umeng_sdk.jar --友盟的sdk<br>
+>├ zxing-1.6.jar --二维码处理的包<br>
 
 **3、res目录** <br>
 res目录存放工程用到的图片、布局、样式等资源文件。<br>
@@ -120,3 +125,6 @@ android-app项目设置2-3名管理者，目前的管理者是
 - Iceskysl
 
 每个人都可以fork一份代码，在自己的分支上修改，完成相关的功能后可以给 `eoecn/android-app` 发起一个pull request,管理者收到pull request后会评估合并提交的功能和代码
+
+ps. 
+详细的协作步骤请参考Iceskysl写的[基于Github参与eoe的开源项目指南](http://my.eoe.cn/iceskysl/archive/3195.html)文章

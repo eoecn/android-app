@@ -51,4 +51,12 @@
 	<dimen name="popupWindow_margin">20dp</dimen>
 	
 	<!-- 用户信息图标宽度 -->
+	
+	<!--
+		建议 直接使用单位来命名,不要使用具体含义,这样可以减少重复的声明,增加重用性
+		不知道这个建议是否合适?
+	-->
+	<dimen name="dp10">10dp</dimen>
+	<dimen name="sp14">14sp</dimen>
+	<dimen name="sp20">20sp</dimen>
 </resources>

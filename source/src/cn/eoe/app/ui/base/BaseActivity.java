@@ -2,8 +2,6 @@ package cn.eoe.app.ui.base;
 
 import java.lang.reflect.Field;
 
-import com.umeng.analytics.MobclickAgent;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -18,6 +16,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import cn.eoe.app.R;
 import cn.eoe.app.utils.LogUtil;
+
+import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends Activity {
 

@@ -3,7 +3,6 @@ package cn.eoe.app.ui.base;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
-
 import cn.eoe.app.R;
 
 import com.umeng.analytics.MobclickAgent;

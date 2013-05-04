@@ -51,9 +51,7 @@ public final class ViewfinderView extends View {
     private final int maskColor;
     private final int resultColor;
     private final int frameColor;
-    private final int laserColor;
     private final int resultPointColor;
-    private int scannerAlpha;
     private Collection<ResultPoint> possibleResultPoints;
     private Collection<ResultPoint> lastPossibleResultPoints;
 
@@ -68,9 +66,7 @@ public final class ViewfinderView extends View {
         maskColor = resources.getColor(R.color.viewfinder_mask);
         resultColor = resources.getColor(R.color.result_view);
         frameColor = resources.getColor(R.color.viewfinder_frame);
-        laserColor = resources.getColor(R.color.viewfinder_laser);
         resultPointColor = resources.getColor(R.color.possible_result_points);
-        scannerAlpha = 0;
         possibleResultPoints = new HashSet<ResultPoint>(5);
     }
 
@@ -95,40 +91,32 @@ public final class ViewfinderView extends View {
             paint.setAlpha(OPAQUE);
             canvas.drawBitmap(resultBitmap, frame.left, frame.top, paint);
         } else {
-            int linewidht = 10;
+            int linewidth = 10;
             paint.setColor(frameColor);
 
+            // draw rect
             canvas.drawRect(15 + frame.left, 15 + frame.top,
-                    15 + (linewidht + frame.left), 15 + (50 + frame.top), paint);
+                    15 + (linewidth + frame.left), 15 + (50 + frame.top), paint);
             canvas.drawRect(15 + frame.left, 15 + frame.top,
-                    15 + (50 + frame.left), 15 + (linewidht + frame.top), paint);
-            canvas.drawRect(-15 + ((0 - linewidht) + frame.right),
+                    15 + (50 + frame.left), 15 + (linewidth + frame.top), paint);
+            canvas.drawRect(-15 + ((0 - linewidth) + frame.right),
                     15 + frame.top, -15 + (1 + frame.right),
                     15 + (50 + frame.top), paint);
             canvas.drawRect(-15 + (-50 + frame.right), 15 + frame.top, -15
-                    + frame.right, 15 + (linewidht + frame.top), paint);
+                    + frame.right, 15 + (linewidth + frame.top), paint);
             canvas.drawRect(15 + frame.left, -15 + (-49 + frame.bottom),
-                    15 + (linewidht + frame.left), -15 + (1 + frame.bottom),
+                    15 + (linewidth + frame.left), -15 + (1 + frame.bottom),
                     paint);
             canvas.drawRect(15 + frame.left, -15
-                    + ((0 - linewidht) + frame.bottom), 15 + (50 + frame.left),
+                    + ((0 - linewidth) + frame.bottom), 15 + (50 + frame.left),
                     -15 + (1 + frame.bottom), paint);
-            canvas.drawRect(-15 + ((0 - linewidht) + frame.right), -15
+            canvas.drawRect(-15 + ((0 - linewidth) + frame.right), -15
                     + (-49 + frame.bottom), -15 + (1 + frame.right), -15
                     + (1 + frame.bottom), paint);
             canvas.drawRect(-15 + (-50 + frame.right), -15
-                    + ((0 - linewidht) + frame.bottom), -15 + frame.right, -15
-                    + (linewidht - (linewidht - 1) + frame.bottom), paint);
+                    + ((0 - linewidth) + frame.bottom), -15 + frame.right, -15
+                    + (linewidth - (linewidth - 1) + frame.bottom), paint);
 
-            paint.setColor(laserColor);
-            paint.setAlpha(SCANNER_ALPHA[scannerAlpha]);
-            scannerAlpha = (scannerAlpha + 1) % SCANNER_ALPHA.length;
-            int vmiddle = frame.height() / 2 + frame.top;
-            int hmiddle = frame.width() / 2 + frame.left;
-            canvas.drawRect(frame.left + 2, vmiddle - 1, frame.right - 1,
-                    vmiddle + 2, paint);
-
-            canvas.drawRect(hmiddle - 1, frame.top + 2, hmiddle + 2, frame.bottom - 1, paint);
             Collection<ResultPoint> currentPossible = possibleResultPoints;
             Collection<ResultPoint> currentLast = lastPossibleResultPoints;
             if (currentPossible.isEmpty()) {

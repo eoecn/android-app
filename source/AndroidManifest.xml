@@ -111,5 +111,4 @@
             android:name="UMENG_CHANNEL"
             android:value="Default" />
     </application>
-
 </manifest>

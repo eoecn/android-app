@@ -49,6 +49,15 @@ public class NewsFragment extends BaseListFragment {
 
 	};
 
+	// add this constructor by King0769, 2013/5/7
+	// in order to solve an exception that "can't instantiate class cn.eoe.app.view.NewsFragment; no empty constructor"
+	// I found it in this case : 1.open eoe program -> 2.change system language -> 3.reopen eoe, can see FC(force close)
+	// I think this bug will happens in many cases.
+	public NewsFragment() {
+		
+	}
+	//--------------------
+	
 	public NewsFragment(Activity c, NewsCategoryListEntity categorys) {
 		this.mActivity = c;
 

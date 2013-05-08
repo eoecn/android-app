@@ -28,8 +28,8 @@
     <string name="user_login_alert">你终于来啦，快登录吧</string>
     <string name="user_key_alert">输入你的密钥</string>
     <string name="user_bind_btn">绑定</string>
-    <string name="user_qr_scan_btn">亲,扫扫更健康</string>
-    <string name="user_alert">请在web端登陆后，寻找你的密钥：\nhttp://my.eoe.cn/admin\n会员中心>资料设置>我的密钥（如下图）</string>
+    <string name="user_qr_scan_btn">二维码扫描登陆</string>
+    <string name="user_alert">请在web端登陆后，寻找你的密钥：\nhttp://my.eoe.cn/admin/profile/auth.html\n会员中心>设置>客户端密钥（如下图）</string>
     <string name="user_button_alert">登陆后，你可以享有以下功能</string>
     <string name="user_level_alert">社区勋章</string>
     <string name="user_login_another">换一种方式登录</string>

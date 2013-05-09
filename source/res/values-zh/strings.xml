@@ -28,8 +28,8 @@
     <string name="user_login_alert">你终于来啦，快登录吧</string>
     <string name="user_key_alert">输入你的密钥</string>
     <string name="user_bind_btn">绑定</string>
-    <string name="user_qr_scan_btn">亲,扫扫更健康</string>
-    <string name="user_alert">请在web端登陆后，寻找你的密钥：\nhttp://my.eoe.cn/admin\n会员中心>资料设置>我的密钥（如下图）</string>
+    <string name="user_qr_scan_btn">二维码扫描登陆</string>
+    <string name="user_alert">请在web端登陆后，寻找你的密钥：\nhttp://my.eoe.cn/admin/profile/auth.html\n会员中心>设置>客户端密钥（如下图）</string>
     <string name="user_button_alert">登陆后，你可以享有以下功能</string>
     <string name="user_level_alert">社区勋章</string>
     <string name="user_login_another">换一种方式登录</string>
@@ -64,10 +64,12 @@
     <string name="user_loginKey_error">错误密钥!</string>
     <string name="user_loginInfo_error">获取信息失败，\n请尝试重新登录。</string>
     <string name="about">关于我们</string>
-    <string name="about_title">名称:eoe\n版本:1.0.0\n基于:www.eoe.cn</string>
-    <string name="about_intro">[应用简介]\n\teoe客户端是一款专为移动开发者提供帮助的软件。依靠www.eoe.cn开发者社区，将高质量的移动开发资讯、学习教程、代码库等信息提供给移动开发者，以方便大家能更好更快的学习移动开发的相关知识，尽快成长。</string>
-    <string name="about_story">[应用故事]\n\teoe的理念是‘让移动开发更简单’，如何让移动开发者更简单是我们不断思考和探索的，我们认为有组织、有体系的内容对开发者的学习和成长都是最有价值的，于是大家都希望有这么一款让我们零碎时间里学习到最有价值的知识，于是eoe客户端诞生了!</string>
-    <string name="about_thanks">[致谢]\n\teoe客户端里边的内容资源都是由eoe开发者社区的忠实用户所提供的，并由我们eoe易联志远开发进行组织和展示，感谢其中包括的所有人，感谢你们提供的内容，有了你们eoe会更精彩！</string>
+    <string name="about_title">名称:eoe\n版本:1.1.0\n基于:www.eoe.cn</string>
+    <string name="about_intro">[应用简介]\neoe客户端是一款专为移动开发者提供帮助的软件。依靠www.eoe.cn开发者社区，将高质量的移动开发资讯、学习教程、代码库等信息提供给移动开发者，以方便大家能更好更快的学习移动开发的相关知识，尽快成长。</string>
+    <string name="about_story">[应用故事]\neoe的理念是‘让移动开发更简单’，如何让移动开发者更简单是我们不断思考和探索的，我们认为有组织、有体系的内容对开发者的学习和成长都是最有价值的，于是大家都希望有这么一款让我们零碎时间里学习到最有价值的知识，于是eoe客户端诞生了!</string>
+    <string name="about_thanks">[致谢]\neoe客户端里边的内容资源都是由eoe开发者社区的忠实用户所提供的，并由eoe开发者社区开发进行组织和展示，感谢其中包括的所有人，感谢你们提供的内容，有了你们eoe会更精彩！</string>
+    <string name="about_opensource">[开源]\neoe客户端代码已经完全开源，欢迎每个eoer们参与, 详情情况请关注社区相关信息, 感谢每一个参与的人和每一行代码, 尤其感谢com360, Anson Yang, jackrex, KingLaw, feicien, kris, kaxi4it, ronanhardiman,lichen228等贡献的代码.</string>
+
     <string name="about_tontact">联系我们：</string>
     <string name="about_sina"> \@eoe移动开发者社区</string>
     <string name="about_weixin"> eoe_cn</string>
@@ -93,6 +95,7 @@
     <string name="user_center_e_reputation">e望:%s</string>
     
     <!-- 二维码扫描 -->
-    <string name="scan_tip">请将条码置于取景框内扫描</string>
+    <string name="scan_tip">请将二维码置于取景框内扫描</string>
     <string name="scan_retry">二维码扫描出错啦,请重新扫描</string>
+    <string name="scan_title">扫一扫</string>
 </resources>

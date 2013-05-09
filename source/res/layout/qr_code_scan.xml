@@ -17,17 +17,19 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:paddingBottom="@dimen/dp2" >
-
+        android:layout_gravity="center">
+        
+		<include layout="@layout/details_title" />
+		
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp10"
             android:text="@string/scan_tip"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp14" />
+            android:textSize="@dimen/sp20" />
     </RelativeLayout>
 
 </FrameLayout>

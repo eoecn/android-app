@@ -371,11 +371,12 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	/**
 	 * 连续按两次返回键就退出
 	 */
-	private long firstTime;
-	private Boolean ifExit;
+	private int keyBackClickCount=0;
+
 	@Override
 	protected void onResume() {
 		super.onResume();
+		keyBackClickCount=0;
 	}
 	
 
@@ -384,24 +385,30 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 		// TODO Auto-generated method stub
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if(System.currentTimeMillis() - firstTime < 3000){
-				ifExit = true;
-			}else{
-				firstTime = System.currentTimeMillis();
-				ifExit = false;
-				Toast.makeText(this,
-						getResources().getString(R.string.press_again_exit),
-						Toast.LENGTH_SHORT).show();
+			switch (keyBackClickCount++) {
+				case 0:
+					Toast.makeText(this,
+							getResources().getString(R.string.press_again_exit),
+							Toast.LENGTH_SHORT).show();
+					Timer timer = new Timer();
+					timer.schedule(new TimerTask() {
+						@Override
+						public void run() {
+							keyBackClickCount=0;
+						}
+					}, 3000);
+					break;
+				case 1:
+					mFrameTv.setVisibility(0);
+					mImgTv.setVisibility(0);
+					Animation anim = AnimationUtils.loadAnimation(
+							MainActivity.this, R.anim.tv_off);
+					anim.setAnimationListener(new tvOffAnimListener());
+					mImgTv.startAnimation(anim);
+					break;
+				default:
+					break;
 			}
-			if(ifExit){
-				mFrameTv.setVisibility(0);
-				mImgTv.setVisibility(0);
-				Animation anim = AnimationUtils.loadAnimation(
-						MainActivity.this, R.anim.tv_off);
-				anim.setAnimationListener(new tvOffAnimListener());
-				mImgTv.startAnimation(anim);
-			}
-			
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
 

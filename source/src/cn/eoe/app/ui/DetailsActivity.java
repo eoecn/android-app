@@ -24,6 +24,7 @@ import cn.eoe.app.db.DetailColumn;
 import cn.eoe.app.db.biz.DetailDB;
 import cn.eoe.app.entity.DetailResponseEntity;
 import cn.eoe.app.https.HttpUtils;
+import cn.eoe.app.https.NetWorkHelper;
 import cn.eoe.app.ui.base.BaseActivity;
 import cn.eoe.app.utils.CommonUtil;
 import cn.eoe.app.utils.IntentUtil;
@@ -284,6 +285,10 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 			break;
 		}
 		if (url != null) {
+			if (!NetWorkHelper.checkNetState(this)){
+				showLongToast(getResources().getString(R.string.httpisNull));
+				return ;
+			}
 			new LoginAsyncTask().execute(url, v.getId());
 		}
 	}
@@ -306,12 +311,19 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 		protected Boolean doInBackground(Object... params) {
 			// TODO Auto-generated method stub
 			id = Integer.parseInt(params[1].toString());
-			if (!HttpUtils.isNetworkAvailable(DetailsActivity.this)) {
-				showLongToast(getResources().getString(R.string.httpisNull));
+//			if (!HttpUtils.isNetworkAvailable(DetailsActivity.this)) {
+//				showLongToast(getResources().getString(R.string.httpisNull));
+//				return false;
+//			}
+			String result;
+			try {
+				result = HttpUtils.getByHttpClient(DetailsActivity.this,
+						params[0].toString());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 				return false;
 			}
-			String result = HttpUtils.getByHttpClient(DetailsActivity.this,
-					params[0].toString());
 			try {
 				JSONObject jsonObj = new JSONObject(result);
 				JSONObject response = jsonObj.getJSONObject("response");

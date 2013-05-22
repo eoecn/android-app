@@ -25,16 +25,16 @@ public class HttpUtils {
 	}
 
 	public static String getByHttpClient(Context context,String strUrl,
-			NameValuePair... nameValuePairs) {
+			NameValuePair... nameValuePairs) throws Exception {
 		return CustomHttpClient.getFromWebByHttpClient(context,strUrl, nameValuePairs);
 	}
 
 	// ------------------------------------------------------------------------------------------
 	// 网络连接判断
 	// 判断是否有网络
-	public static boolean isNetworkAvailable(Context context) {
-		return NetWorkHelper.isNetworkAvailable(context);
-	}
+//	public static boolean isNetworkAvailable(Context context) {
+//		return NetWorkHelper.isNetworkAvailable(context);
+//	}
 
 	// 判断mobile网络是否可用
 	public static boolean isMobileDataEnable(Context context) {

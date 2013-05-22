@@ -16,11 +16,18 @@ import android.widget.LinearLayout;
 import cn.eoe.app.R;
 import cn.eoe.app.config.Urls;
 import cn.eoe.app.https.HttpUtils;
+import cn.eoe.app.https.NetWorkHelper;
 import cn.eoe.app.ui.base.BaseActivity;
+import cn.eoe.app.utils.CommonLog;
 import cn.eoe.app.utils.IntentUtil;
+import cn.eoe.app.utils.LogFactory;
 
 public class UserLoginUidActivity extends BaseActivity implements
 		OnClickListener {
+	
+	private static final CommonLog log = LogFactory.createLog();
+	
+	
 	public static String SharedName = "login";
 	public static String UID = "uid";// 用户名
 	public static String PWD = "pwd";// 密码
@@ -88,6 +95,9 @@ public class UserLoginUidActivity extends BaseActivity implements
 		} else if (TextUtils.isEmpty(pwd)) {
 			showShortToast(getResources().getString(R.string.user_pwd));
 			return;
+		}else if (!NetWorkHelper.checkNetState(this)){
+			showLongToast(getResources().getString(R.string.httpisNull));
+			return ;
 		}
 		String loginUser = String.format(Urls.USER_LOGIN, name, pwd);
 		new LoginAsyncTask().execute(loginUser);
@@ -105,12 +115,21 @@ public class UserLoginUidActivity extends BaseActivity implements
 		@Override
 		protected Boolean doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			if (!HttpUtils.isNetworkAvailable(UserLoginUidActivity.this)) {
-				showLongToast(getResources().getString(R.string.httpisNull));
+	
+//			if (!HttpUtils.isNetworkAvailable(UserLoginUidActivity.this)) {
+//				showLongToast(getResources().getString(R.string.httpisNull));
+//				return false;
+//			}
+
+			String result = "";
+			try {
+				result = HttpUtils.getByHttpClient(
+						UserLoginUidActivity.this, params[0]);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 				return false;
 			}
-			String result = HttpUtils.getByHttpClient(
-					UserLoginUidActivity.this, params[0]);
 			try {
 				JSONObject jsonObj = new JSONObject(result);
 				JSONObject response = jsonObj.getJSONObject("response");
@@ -122,6 +141,7 @@ public class UserLoginUidActivity extends BaseActivity implements
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			return false;
 		}
 

@@ -96,8 +96,8 @@ public class UserLoginUidActivity extends BaseActivity implements
 			showShortToast(getResources().getString(R.string.user_pwd));
 			return;
 		}else if (!NetWorkHelper.checkNetState(this)){
-//			showLongToast(getResources().getString(R.string.httpisNull));
-//			return ;
+			showLongToast(getResources().getString(R.string.httpisNull));
+			return ;
 		}
 		String loginUser = String.format(Urls.USER_LOGIN, name, pwd);
 		new LoginAsyncTask().execute(loginUser);

@@ -164,7 +164,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 		// sm.setFadeDegree(0.35f);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		sm.setShadowDrawable(R.drawable.slidingmenu_shadow);
-		sm.setShadowWidth(20);
+		//sm.setShadowWidth(20);
 		sm.setBehindScrollScale(0);
 	}
 

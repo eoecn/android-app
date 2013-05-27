@@ -3,7 +3,6 @@
     <style name="AppTheme" parent="android:Theme.Light" />
 
     <style name="splash_style" parent="@android:style/Theme.NoTitleBar.Fullscreen">
-        <item name="android:background">@drawable/splash_load</item>
     </style>
 
     <style name="behind_button_style">

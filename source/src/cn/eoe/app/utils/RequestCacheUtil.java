@@ -34,13 +34,13 @@ public class RequestCacheUtil {
 			String source_type, String content_type, boolean UseCache) {
 		DBHelper dbHelper = DBHelper.getInstance(context);
 		String md5 = MD5.encode(RequestUrl);
-		String cachePath = context.getCacheDir().getAbsolutePath() + "/" + md5; // data里的缓存
-		String imagePath = getExternalCacheDir(context) + File.separator + md5; // sd卡
-																				// 缓存目录
+																						// 缓存目录
 		if (!CommonUtil.sdCardIsAvailable())/* true 为可用 */{
+			String cachePath = context.getCacheDir().getAbsolutePath() + "/" + md5; // data里的缓存
 			return getCacheRequest(context, RequestUrl, cachePath, source_type,
 					content_type, dbHelper, UseCache);
 		} else {
+			String imagePath = getExternalCacheDir(context) + File.separator + md5; // sd卡
 			return getCacheRequest(context, RequestUrl, imagePath, source_type,
 					content_type, dbHelper, UseCache);
 		}

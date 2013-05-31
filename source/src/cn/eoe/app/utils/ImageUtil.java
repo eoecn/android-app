@@ -61,15 +61,17 @@ public class ImageUtil {
 			boolean b) {
 		DBHelper dbHelper = DBHelper.getInstance(context);
 		String md5 = ImageUtil.md5(imageUrl);
-		String cachePath = context.getCacheDir().getAbsolutePath() + "/" + md5; // data里的缓存
-		String imagePath = getExternalCacheDir(context) + File.separator + md5; // sd卡
+		
+		
 		// 缓存目录
 
 		if (!CommonUtil.sdCardIsAvailable())/* true 为可用 */{
+			String cachePath = context.getCacheDir().getAbsolutePath() + "/" + md5; // data里的缓存
 			setThumbnailImage(iv_item_image, imageUrl, cachePath, dbHelper,
 					callback, b);
 			iv_item_image.setTag(cachePath);
 		} else {
+			String imagePath = getExternalCacheDir(context) + File.separator + md5; // sd卡
 			setThumbnailImage(iv_item_image, imageUrl, imagePath, dbHelper,
 					callback, b);
 			iv_item_image.setTag(imagePath);

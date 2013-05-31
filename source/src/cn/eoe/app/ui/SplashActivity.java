@@ -13,11 +13,7 @@ import com.umeng.update.UmengUpdateAgent;
 
 public class SplashActivity extends BaseActivity {
 
-	private Handler mHandler = new Handler() {
-		public void handleMessage(android.os.Message msg) {
-			goHome();
-		}
-	};
+	private Handler mHandler = new Handler();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +31,12 @@ public class SplashActivity extends BaseActivity {
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-				mHandler.removeMessages(0);
-				mHandler.sendEmptyMessageDelayed(0, 500);
+				mHandler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						goHome();
+					}
+				}, 500);
 			}
 		});
 		UmengUpdateAgent.setUpdateOnlyWifi(false);

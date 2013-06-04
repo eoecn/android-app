@@ -19,6 +19,7 @@ import android.widget.Toast;
 import cn.eoe.app.R;
 import cn.eoe.app.biz.UserDao;
 import cn.eoe.app.https.HttpUtils;
+import cn.eoe.app.https.NetWorkHelper;
 import cn.eoe.app.ui.base.BaseActivity;
 import cn.eoe.app.utils.IntentUtil;
 
@@ -105,6 +106,10 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
             Toast.makeText(this, R.string.user_login_enter_key, Toast.LENGTH_SHORT).show();
             return;
         }
+        if (!NetWorkHelper.checkNetState(this)){
+        	showLongToast(getResources().getString(R.string.httpisNull));
+        	return ;
+        }
         new LoginAsyncTask().execute();
     }
     @Override
@@ -135,10 +140,10 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
         @Override
         protected Boolean doInBackground(String... params) {
             // TODO Auto-generated method stub
-            if (!HttpUtils.isNetworkAvailable(UserLoginActivity.this)) {
-                showLongToast(getResources().getString(R.string.httpisNull));
-                return false;
-            }
+//            if (!HttpUtils.isNetworkAvailable(UserLoginActivity.this)) {
+//                showLongToast(getResources().getString(R.string.httpisNull));
+//                return false;
+//            }
             try {
                 return mUserDao.mapperJson(editKey.getText().toString()) != null ? true
                         : false;

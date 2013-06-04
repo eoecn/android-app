@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file XListView.java
  * @package me.maxwin.view
  * @create Mar 18, 2012 6:28:41 PM

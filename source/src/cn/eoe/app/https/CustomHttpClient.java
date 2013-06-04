@@ -34,10 +34,12 @@ import org.apache.http.util.EntityUtils;
 import android.content.Context;
 import android.util.Log;
 import cn.eoe.app.R;
+import cn.eoe.app.utils.CommonLog;
+import cn.eoe.app.utils.LogFactory;
 
 public class CustomHttpClient {
 	private static String TAG = "CustomHttpClient";
-
+	private static final CommonLog log = LogFactory.createLog();
 	private static final String CHARSET_UTF8 = HTTP.UTF_8;
 	private static final String CHARSET_GB2312 = "GB2312";
 	private static HttpClient customerHttpClient;
@@ -87,7 +89,8 @@ public class CustomHttpClient {
 	}
 
 	public static String getFromWebByHttpClient(Context context, String url,
-			NameValuePair... nameValuePairs) {
+			NameValuePair... nameValuePairs) throws Exception{
+			log.d("getFromWebByHttpClient url = " + url);
 		try {
 			// http地址
 			// String httpUrl =
@@ -123,10 +126,11 @@ public class CustomHttpClient {
 					R.string.httpError),e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			log.e("IOException ");
 			e.printStackTrace();
 			throw new RuntimeException(context.getResources().getString(
 					R.string.httpError),e);
-		} 
+		} 	
 	}
 
 	/**

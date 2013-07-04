@@ -3,3 +3,4 @@ plase read this text
 2.writer
 3.read and writer
 add a line
+add a line,too.

@@ -20,6 +20,7 @@ import cn.eoe.app.R;
 import cn.eoe.app.biz.UserDao;
 import cn.eoe.app.https.HttpUtils;
 import cn.eoe.app.ui.base.BaseActivity;
+import cn.eoe.app.utils.CommonUtil;
 import cn.eoe.app.utils.IntentUtil;
 
 import com.google.zxing.CaptureActivity;
@@ -61,8 +62,12 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
         mBtnBind.setOnClickListener(this);
         mBtnScan = (Button) findViewById(R.id.scan_user_key);
         mBtnScan.setOnClickListener(this);
+        // 不存在摄像头设备时隐藏扫一扫
+        if( !CommonUtil.isCameraHardwareIsExist( UserLoginActivity.this ) ){
+        	mBtnScan.setVisibility( Button.INVISIBLE );
+        }
     }
-
+    
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub

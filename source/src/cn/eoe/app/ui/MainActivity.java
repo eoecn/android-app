@@ -139,11 +139,11 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 		initgoHome();
 		initNav();
 	}
-
+	
 	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
+	protected void onStop() {
+		super.onStop();
+		// 写文件操作最好放在onStop里面
 		try {
 			DBHelper db = DBHelper.getInstance(this);
 			db.closeDb();

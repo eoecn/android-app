@@ -20,10 +20,13 @@ public class SplashActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		//this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		//		WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
-		UmengUpdateAgent.update(this);
-		
+		mHandler.post( new Runnable( ) {
+			@Override
+			public void run() {
+				UmengUpdateAgent.setUpdateOnlyWifi( false );
+				UmengUpdateAgent.update( SplashActivity.this );
+			}
+		});
 		//getWindow().setBackgroundDrawable(
 		//		getResources().getDrawable(R.drawable.splash_load));
 		

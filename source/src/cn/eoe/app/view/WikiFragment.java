@@ -142,7 +142,7 @@ public class WikiFragment extends BaseListFragment {
 
 	@Override
 	public void onLoadMore() {
-		if (more_url.equals(null) || more_url.equals("")) {
+		if (more_url==null || more_url.equals("")) {
 			mHandler.sendEmptyMessage(1);
 			return;
 		} else {

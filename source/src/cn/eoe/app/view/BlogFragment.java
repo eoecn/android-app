@@ -180,7 +180,7 @@ public class BlogFragment extends BaseListFragment {
 	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
-		if (more_url.equals(null) || more_url.equals("")) {
+		if (more_url==null || more_url.equals("")) {
 			mHandler.sendEmptyMessage(1);
 			return;
 		} else {

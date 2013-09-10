@@ -19,6 +19,7 @@ package com.google.zxing.view;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -45,6 +46,9 @@ public final class ViewfinderView extends View {
     };
     private static final long ANIMATION_DELAY = 100L;
     private static final int OPAQUE = 0xFF;
+	private static final int SPEEN_DISTANCE = 5;
+	private static final int MIDDLE_LINE_PADDING = 5;
+	private static final int MIDDLE_LINE_WIDTH = 5;
 
     private final Paint paint;
     private Bitmap resultBitmap;
@@ -54,6 +58,15 @@ public final class ViewfinderView extends View {
     private final int resultPointColor;
     private Collection<ResultPoint> possibleResultPoints;
     private Collection<ResultPoint> lastPossibleResultPoints;
+    private boolean isFirst;
+    private int slideTop;
+	private int slideBottom;
+
+	private Bitmap qrLineBitmap;//微信的扫描线是一张图片
+    private int qrWidth;//扫描线的长
+    private int qrHeight;//扫描线的高
+    private Rect qrSrc;
+    private Rect qrDst;
 
     // This constructor is used when the class is built from an XML resource.
     public ViewfinderView(Context context, AttributeSet attrs) {
@@ -63,6 +76,12 @@ public final class ViewfinderView extends View {
         // time in onDraw().
         paint = new Paint();
         Resources resources = getResources();
+        
+        qrLineBitmap = BitmapFactory.decodeResource(resources, R.drawable.qrcode_scan_line);
+        qrWidth = qrLineBitmap.getWidth();
+        qrHeight = qrLineBitmap.getHeight();
+        qrSrc=new Rect(0, 0, qrWidth, qrHeight);
+
         maskColor = resources.getColor(R.color.viewfinder_mask);
         resultColor = resources.getColor(R.color.result_view);
         frameColor = resources.getColor(R.color.viewfinder_frame);
@@ -76,6 +95,14 @@ public final class ViewfinderView extends View {
         if (frame == null) {
             return;
         }
+        
+      //初始化中间线滑动的最上边和最下边  
+        if(!isFirst){  
+            isFirst = true;  
+            slideTop = frame.top;  
+            slideBottom = frame.bottom;  
+        }  
+        
         int width = canvas.getWidth();
         int height = canvas.getHeight();
 
@@ -91,6 +118,16 @@ public final class ViewfinderView extends View {
             paint.setAlpha(OPAQUE);
             canvas.drawBitmap(resultBitmap, frame.left, frame.top, paint);
         } else {
+        	
+        	//绘制中间的线,每次刷新界面，中间的线往下移动SPEEN_DISTANCE  
+            slideTop += SPEEN_DISTANCE;  
+            if(slideTop >= frame.bottom){  
+                slideTop = frame.top;  
+            }
+
+            qrDst=new Rect(frame.left, slideTop, frame.right, slideTop+qrHeight);
+            canvas.drawBitmap(qrLineBitmap,qrSrc,qrDst ,null);
+
             int linewidth = 10;
             paint.setColor(frameColor);
 

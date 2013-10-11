@@ -1,3 +1,14 @@
+﻿/*
+ * @(#) 所有版权归聚灵工作室所有.
+ * 
+ * $Id$
+ * 
+ * ===================================
+ * Electric Operation Maintenance System(EOMS)
+ * 
+ * Copyright (c) 2006 by INSPUR LG, Inc.
+ * All rights reserved.
+ */
 package cn.eoe.app.utils;
 
 import java.io.Serializable;
@@ -9,24 +20,184 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-
+/**
+ * 日期操作工具类，主要实现了日期的常用操作。
+ * <p>
+ * 在工具类中经常使用到工具类的格式化描述，这个主要是一个日期的操作类，所以日志格式主要使用 SimpleDateFormat的定义格式.
+ * <p>
+ * 格式的意义如下： 日期和时间模式 <br>
+ * 日期和时间格式由日期和时间模式字符串指定。在日期和时间模式字符串中，未加引号的字母 'A' 到 'Z' 和 'a' 到 'z'
+ * 被解释为模式字母，用来表示日期或时间字符串元素。文本可以使用单引号 (') 引起来，以免进行解释。"''"
+ * 表示单引号。所有其他字符均不解释；只是在格式化时将它们简单复制到输出字符串，或者在分析时与输入字符串进行匹配。
+ * <p>
+ * 定义了以下模式字母（所有其他字符 'A' 到 'Z' 和 'a' 到 'z' 都被保留）： <br>
+ * <table>
+ * <tr>
+ * <td>字母</td>
+ * <td>日期或时间元素</td>
+ * <td>表示</td>
+ * <td>示例</td>
+ * <td></tr>
+ * <tr>
+ * <td>G</td>
+ * <td>Era</td>
+ * <td>标志符</td>
+ * <td>Text</td>
+ * <td>AD</td>
+ * <td></tr>
+ * <tr>
+ * <td>y</td>
+ * <td>年</td>
+ * <td>Year</td>
+ * <td>1996;</td>
+ * <td>96</td>
+ * <td></tr>
+ * <tr>
+ * <td>M</td>
+ * <td>年中的月份</td>
+ * <td>Month</td>
+ * <td>July;</td>
+ * <td>Jul;</td>
+ * <td>07</tr>
+ * <tr>
+ * <td>w</td>
+ * <td>年中的周数</td>
+ * <td>Number</td>
+ * <td>27</td>
+ * <td></tr>
+ * <tr>
+ * <td>W</td>
+ * <td>月份中的周数</td>
+ * <td>Number</td>
+ * <td>2</td>
+ * <td></tr>
+ * <tr>
+ * <td>D</td>
+ * <td>年中的天数</td>
+ * <td>Number</td>
+ * <td>189</td>
+ * <td></tr>
+ * <tr>
+ * <td>d</td>
+ * <td>月份中的天数</td>
+ * <td>Number</td>
+ * <td>10</td>
+ * <td></tr>
+ * <tr>
+ * <td>F</td>
+ * <td>月份中的星期</td>
+ * <td>Number</td>
+ * <td>2</td>
+ * <td></tr>
+ * <tr>
+ * <td>E</td>
+ * <td>星期中的天数</td>
+ * <td>Text</td>
+ * <td>Tuesday;</td>
+ * <td>Tue</tr>
+ * <tr>
+ * <td>a</td>
+ * <td>Am/pm</td>
+ * <td>标记</td>
+ * <td>Text</td>
+ * <td>PM</td>
+ * <td></tr>
+ * <tr>
+ * <td>H</td>
+ * <td>一天中的小时数（0-23）</td>
+ * <td>Number</td>
+ * <td>0</tr>
+ * <tr>
+ * <td>k</td>
+ * <td>一天中的小时数（1-24）</td>
+ * <td>Number</td>
+ * <td>24</td>
+ * <td></tr>
+ * <tr>
+ * <td>K</td>
+ * <td>am/pm</td>
+ * <td>中的小时数（0-11）</td>
+ * <td>Number</td>
+ * <td>0</td>
+ * <td></tr>
+ * <tr>
+ * <td>h</td>
+ * <td>am/pm</td>
+ * <td>中的小时数（1-12）</td>
+ * <td>Number</td>
+ * <td>12</td>
+ * <td></tr>
+ * <tr>
+ * <td>m</td>
+ * <td>小时中的分钟数</td>
+ * <td>Number</td>
+ * <td>30</td>
+ * <td></tr>
+ * <tr>
+ * <td>s</td>
+ * <td>分钟中的秒数</td>
+ * <td>Number</td>
+ * <td>55</td>
+ * <td></tr>
+ * <tr>
+ * <td>S</td>
+ * <td>毫秒数</td>
+ * <td>Number</td>
+ * <td>978</td>
+ * <td></tr>
+ * <tr>
+ * <td>z</td>
+ * <td>时区</td>
+ * <td>General</td>
+ * <td>time</td>
+ * <td>zone</td>
+ * <td>Pacific</td>
+ * <td>Standard</td>
+ * <td>Time;</td>
+ * <td>PST;</td>
+ * <td>GMT-08:00</tr>
+ * <tr>
+ * <td>Z</td>
+ * <td>时区</td>
+ * <td>RFC</td>
+ * <td>822</td>
+ * <td>time</td>
+ * <td>zone</td>
+ * <td>-0800</td>
+ * <td></tr>
+ * </table>
+ * 
+ * 模式字母通常是重复的，其数量确定其精确表示：
+ * 
+ */
 public final class DateUtil implements Serializable {
 	/**
-  * 
-  */
+	 * 
+	 */
 	private static final long serialVersionUID = -3098985139095632110L;
 
 	private DateUtil() {
 	}
 
 	/**
-	 * ��ʽ��������ʾ��ʽs
+	 * 格式化日期显示格式yyyy-MM-dd
 	 * 
 	 * @param sdate
-	 *            ԭʼ���ڸ�ʽ s - ��ʾ "yyyy-mm-dd" ��ʽ�����ڵ� String ����
+	 *            原始日期格式
+	 * @return yyyy-MM-dd格式化后的日期显示
+	 */
+	public static String dateFormat(String sdate) {
+		return dateFormat(sdate, "yyyy-MM-dd");
+	}
+
+	/**
+	 * 格式化日期显示格式
+	 * 
+	 * @param sdate
+	 *            原始日期格式
 	 * @param format
-	 *            ��ʽ�������ڸ�ʽ
-	 * @return ��ʽ�����������ʾ
+	 *            格式化后日期格式
+	 * @return 格式化后的日期显示
 	 */
 	public static String dateFormat(String sdate, String format) {
 		SimpleDateFormat formatter = new SimpleDateFormat(format);
@@ -37,43 +208,37 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * �����������������
+	 * 求两个日期相差天数
 	 * 
 	 * @param sd
-	 *            ��ʼ���ڣ���ʽyyyy-MM-dd
+	 *            起始日期，格式yyyy-MM-dd
 	 * @param ed
-	 *            ��ֹ���ڣ���ʽyyyy-MM-dd
-	 * @return ���������������
+	 *            终止日期，格式yyyy-MM-dd
+	 * @return 两个日期相差天数
 	 */
 	public static long getIntervalDays(String sd, String ed) {
-		return ((java.sql.Date.valueOf(ed)).getTime() - (java.sql.Date.valueOf(sd)).getTime()) / (3600 * 24 * 1000);
+		return ((java.sql.Date.valueOf(ed)).getTime() - (java.sql.Date
+				.valueOf(sd)).getTime())
+				/ (3600 * 24 * 1000);
 	}
 
 	/**
-	 * ��ʼ����yyyy-MM����ֹ��yyyy-MM֮���ȵ�����
+	 * 起始年月yyyy-MM与终止月yyyy-MM之间跨度的月数
 	 * 
-	 * @param beginMonth
-	 *            ��ʽΪyyyy-MM
-	 * @param endMonth
-	 *            ��ʽΪyyyy-MM
-	 * @return ����
+	 * @return int
 	 */
 	public static int getInterval(String beginMonth, String endMonth) {
 		int intBeginYear = Integer.parseInt(beginMonth.substring(0, 4));
-		int intBeginMonth = Integer.parseInt(beginMonth.substring(beginMonth.indexOf("-") + 1));
+		int intBeginMonth = Integer.parseInt(beginMonth.substring(beginMonth
+				.indexOf("-") + 1));
 		int intEndYear = Integer.parseInt(endMonth.substring(0, 4));
-		int intEndMonth = Integer.parseInt(endMonth.substring(endMonth.indexOf("-") + 1));
+		int intEndMonth = Integer.parseInt(endMonth.substring(endMonth
+				.indexOf("-") + 1));
 
-		return ((intEndYear - intBeginYear) * 12) + (intEndMonth - intBeginMonth) + 1;
+		return ((intEndYear - intBeginYear) * 12)
+				+ (intEndMonth - intBeginMonth) + 1;
 	}
 
-	/**
-	 * ��ݸ�ķ���λ�ÿ�ʼ��������/ʱ���ַ����磬ʱ���ı� "07/10/96 4:5 PM, PDT" ������ɵ�ͬ�� Date(837039928046) �� Date��
-	 * 
-	 * @param sDate
-	 * @param dateFormat
-	 * @return
-	 */
 	public static Date getDate(String sDate, String dateFormat) {
 		SimpleDateFormat fmt = new SimpleDateFormat(dateFormat);
 		ParsePosition pos = new ParsePosition(0);
@@ -82,18 +247,18 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ȡ�õ�ǰ���ڵ���ݣ���yyyy��ʽ����.
+	 * 取得当前日期的年份，以yyyy格式返回.
 	 * 
-	 * @return ���� yyyy
+	 * @return 当年 yyyy
 	 */
 	public static String getCurrentYear() {
 		return getFormatCurrentTime("yyyy");
 	}
 
 	/**
-	 * �Զ�������һ�ꡣ���統ǰ�����2007�꣬��ô���Զ�����2006
+	 * 自动返回上一年。例如当前年份是2007年，那么就自动返回2006
 	 * 
-	 * @return ���ؽ��ĸ�ʽΪ yyyy
+	 * @return 返回结果的格式为 yyyy
 	 */
 	public static String getBeforeYear() {
 		String currentYear = getFormatCurrentTime("yyyy");
@@ -102,125 +267,103 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ȡ�õ�ǰ���ڵ��·ݣ���MM��ʽ����.
+	 * 取得当前日期的月份，以MM格式返回.
 	 * 
-	 * @return ��ǰ�·� MM
+	 * @return 当前月份 MM
 	 */
 	public static String getCurrentMonth() {
 		return getFormatCurrentTime("MM");
 	}
 
 	/**
-	 * ȡ�õ�ǰ���ڵ������Ը�ʽ"dd"����.
+	 * 取得当前日期的天数，以格式"dd"返回.
 	 * 
-	 * @return ��ǰ���е�ĳ��dd
+	 * @return 当前月中的某天dd
 	 */
 	public static String getCurrentDay() {
 		return getFormatCurrentTime("dd");
 	}
 
 	/**
-	 * ���ص�ǰʱ���ַ�
+	 * 返回当前时间字符串。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd
+	 * 格式：yyyy-MM-dd
 	 * 
-	 * @return String ָ����ʽ�������ַ�.
+	 * @return String 指定格式的日期字符串.
 	 */
 	public static String getCurrentDate() {
 		return getFormatDateTime(new Date(), "yyyy-MM-dd");
 	}
 
 	/**
-	 * ���ص�ǰָ����ʱ�������ʽΪyyyy-MM-dd HH:mm:ss
-	 * 
-	 * @return ��ʽΪyyyy-MM-dd HH:mm:ss���ܹ�19λ��
-	 */
-	public static String getCurrentDateTime() {
-		return getFormatDateTime(new Date(), "yyyy-MM-dd HH:mm:ss");
-	}
-
-	/**
-	 * ���ظ�ʱ���ַ�
+	 * 返回给定时间字符串。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd
+	 * 格式：yyyy-MM-dd
 	 * 
 	 * @param date
-	 *            ����
-	 * @return String ָ����ʽ�������ַ�.
+	 *            日期
+	 * @return String 指定格式的日期字符串.
 	 */
 	public static String getFormatDate(Date date) {
 		return getFormatDateTime(date, "yyyy-MM-dd");
 	}
 
 	/**
-	 * ����ƶ��ĸ�ʽ�����������ַ�����2007-05-05
+	 * 根据制定的格式，返回日期字符串。例如2007-05-05
 	 * 
 	 * @param format
-	 *            "yyyy-MM-dd" ���� "yyyy/MM/dd",��ȻҲ�����Ǳ����ʽ��
-	 * @return ָ����ʽ�������ַ�
+	 *            "yyyy-MM-dd" 或者 "yyyy/MM/dd"
+	 * @return 指定格式的日期字符串。
 	 */
 	public static String getFormatDate(String format) {
 		return getFormatDateTime(new Date(), format);
 	}
 
 	/**
-	 * ���ص�ǰʱ���ַ�
+	 * 返回当前时间字符串。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd HH:mm:ss
+	 * 格式：yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @return String ָ����ʽ�������ַ�.
+	 * @return String 指定格式的日期字符串.
 	 */
 	public static String getCurrentTime() {
 		return getFormatDateTime(new Date(), "yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**
-	 * ���ظ�ʱ���ַ�
+	 * 返回给定时间字符串。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd HH:mm:ss
+	 * 格式：yyyy-MM-dd HH:mm:ss
 	 * 
 	 * @param date
-	 *            ����
-	 * @return String ָ����ʽ�������ַ�.
+	 *            日期
+	 * @return String 指定格式的日期字符串.
 	 */
 	public static String getFormatTime(Date date) {
 		return getFormatDateTime(date, "yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**
-	 * ���ظ��ʱ���ַ�
+	 * 根据给定的格式，返回时间字符串。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd
-	 * 
-	 * @param date
-	 *            ����
-	 * @return String ָ����ʽ�������ַ�.
-	 */
-	public static String getFormatShortTime(Date date) {
-		return getFormatDateTime(date, "yyyy-MM-dd");
-	}
-
-	/**
-	 * ��ݸ�ĸ�ʽ������ʱ���ַ�
-	 * <p>
-	 * ��ʽ�����������˵��.�ͷ���getFormatDate��һ��ġ�
+	 * 格式参照类描绘中说明.
 	 * 
 	 * @param format
-	 *            ���ڸ�ʽ�ַ�
-	 * @return String ָ����ʽ�������ַ�.
+	 *            日期格式字符串
+	 * @return String 指定格式的日期字符串.
 	 */
 	public static String getFormatCurrentTime(String format) {
 		return getFormatDateTime(new Date(), format);
 	}
 
 	/**
-	 * ��ݸ�ĸ�ʽ��ʱ��(Date���͵�)������ʱ���ַ���Ϊͨ�á�<br>
+	 * 根据给定的格式与时间(Date类型的)，返回时间字符串<br>
 	 * 
 	 * @param date
-	 *            ָ��������
+	 *            指定的日期
 	 * @param format
-	 *            ���ڸ�ʽ�ַ�
-	 * @return String ָ����ʽ�������ַ�.
+	 *            日期格式字符串
+	 * @return String 指定格式的日期字符串.
 	 */
 	public static String getFormatDateTime(Date date, String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -228,15 +371,15 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ȡ��ָ�������յ����ڶ���.
+	 * 取得指定年月日的日期对象.
 	 * 
 	 * @param year
-	 *            ��
+	 *            年
 	 * @param month
-	 *            ��ע���Ǵ�1��12
+	 *            月注意是从1到12
 	 * @param day
-	 *            ��
-	 * @return һ��java.util.Date()���͵Ķ���
+	 *            日
+	 * @return 一个java.util.Date()类型的对象
 	 */
 	public static Date getDateObj(int year, int month, int day) {
 		Calendar c = new GregorianCalendar();
@@ -245,55 +388,16 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��ȡָ�����ڵ���һ�졣
+	 * 取得指定分隔符分割的年月日的日期对象.
 	 * 
-	 * @param date
-	 *            yyyy/MM/dd
-	 * @return yyyy/MM/dd
-	 */
-	public static String getDateTomorrow(String date) {
-
-		Date tempDate = null;
-		if (date.indexOf("/") > 0)
-			tempDate = getDateObj(date, "[/]");
-		if (date.indexOf("-") > 0)
-			tempDate = getDateObj(date, "[-]");
-		tempDate = getDateAdd(tempDate, 1);
-		return getFormatDateTime(tempDate, "yyyy/MM/dd");
-	}
-
-	/**
-	 * ��ȡ��ָ���������ָ����������ڡ�
-	 * 
-	 * @param date
-	 *            yyyy/MM/dd
-	 * @param offset
-	 *            ������
-	 * @return yyyy/MM/dd
-	 */
-	public static String getDateOffset(String date, int offset) {
-
-		// Date tempDate = getDateObj(date, "[/]");
-		Date tempDate = null;
-		if (date.indexOf("/") > 0)
-			tempDate = getDateObj(date, "[/]");
-		if (date.indexOf("-") > 0)
-			tempDate = getDateObj(date, "[-]");
-		tempDate = getDateAdd(tempDate, offset);
-		return getFormatDateTime(tempDate, "yyyy/MM/dd");
-	}
-
-	/**
-	 * ȡ��ָ���ָ���ָ�������յ����ڶ���.
-	 * 
-	 * @param argsDate
-	 *            ��ʽΪ"yyyy-MM-dd"
+	 * @param args
+	 *            格式为"yyyy-MM-dd"
 	 * @param split
-	 *            ʱ���ʽ�ļ�������硰-������/����Ҫ��ʱ��һ��������
-	 * @return һ��java.util.Date()���͵Ķ���
+	 *            时间格式的间隔符，例如“-”，“/”
+	 * @return 一个java.util.Date()类型的对象
 	 */
-	public static Date getDateObj(String argsDate, String split) {
-		String[] temp = argsDate.split(split);
+	public static Date getDateObj(String args, String split) {
+		String[] temp = args.split(split);
 		int year = new Integer(temp[0]).intValue();
 		int month = new Integer(temp[1]).intValue();
 		int day = new Integer(temp[2]).intValue();
@@ -301,15 +405,13 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ȡ�ø��ַ����������ڶ�������ģʽ����patternָ���ĸ�ʽ.
+	 * 取得给定字符串描述的日期对象，描述模式采用pattern指定的格式.
 	 * 
 	 * @param dateStr
-	 *            �������� �Ӹ��ַ�Ŀ�ʼ�����ı��������һ�����ڡ��÷�����ʹ�ø��ַ������ı��� �й����ڷ����ĸ����Ϣ������� parse(String, ParsePosition) ������һ��
-	 *            String��Ӧ���俪ʼ�����з���
-	 * 
+	 *            日期描述
 	 * @param pattern
-	 *            ����ģʽ
-	 * @return ���ַ����������ڶ���
+	 *            日期模式
+	 * @return 给定字符串描述的日期对象。
 	 */
 	public static Date getDateFromString(String dateStr, String pattern) {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -323,9 +425,9 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ȡ�õ�ǰDate����.
+	 * 取得当前Date对象.
 	 * 
-	 * @return Date ��ǰDate����.
+	 * @return Date 当前Date对象.
 	 */
 	public static Date getDateObj() {
 		Calendar c = new GregorianCalendar();
@@ -334,134 +436,128 @@ public final class DateUtil implements Serializable {
 
 	/**
 	 * 
-	 * @return ��ǰ�·��ж����죻
+	 * @return 当前月份有多少天；
 	 */
 	public static int getDaysOfCurMonth() {
-		int curyear = new Integer(getCurrentYear()).intValue(); // ��ǰ���
-		int curMonth = new Integer(getCurrentMonth()).intValue();// ��ǰ�·�
-		int mArray[] = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-		// �ж��������� ��2�·���29�죻
-		if ((curyear % 400 == 0) || ((curyear % 100 != 0) && (curyear % 4 == 0))) {
+		int curyear = new Integer(getCurrentYear()).intValue(); // 当前年份
+		int curMonth = new Integer(getCurrentMonth()).intValue();// 当前月份
+		int mArray[] = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30,
+				31 };
+		// 判断闰年的情况 ，2月份有29天；
+		if ((curyear % 400 == 0)
+				|| ((curyear % 100 != 0) && (curyear % 4 == 0))) {
 			mArray[1] = 29;
 		}
 		return mArray[curMonth - 1];
-		// ���Ҫ�����¸��µ�����ע�⴦���·�12���������ֹ����Խ�磻
-		// ���Ҫ�����ϸ��µ�����ע�⴦���·�1���������ֹ����Խ�磻
+		// 如果要返回下个月的天数，注意处理月份12的情况，防止数组越界；
+		// 如果要返回上个月的天数，注意处理月份1的情况，防止数组越界；
 	}
 
 	/**
-	 * ���ָ�������� ����ָ���·ݣ�yyyy-MM���ж����졣
+	 * 根据指定的年月 返回指定月份（yyyy-MM）有多少天。
 	 * 
-	 * @param time
-	 *            yyyy-MM
-	 * @return ����ָ���·ݵ�����
+	 * @param time yyyy-MM
+	 * @return 天数，指定月份的天数。
 	 */
 	public static int getDaysOfCurMonth(final String time) {
-		if (time.length() != 7) {
-			throw new NullPointerException("����ĸ�ʽ������yyyy-MM");
-		}
 		String[] timeArray = time.split("-");
-		int curyear = new Integer(timeArray[0]).intValue(); // ��ǰ���
-		int curMonth = new Integer(timeArray[1]).intValue();// ��ǰ�·�
-		if (curMonth > 12) {
-			throw new NullPointerException("����ĸ�ʽ������yyyy-MM�������·ݱ���С�ڵ���12��");
-		}
-		int mArray[] = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-		// �ж��������� ��2�·���29�죻
-		if ((curyear % 400 == 0) || ((curyear % 100 != 0) && (curyear % 4 == 0))) {
+		int curyear = new Integer(timeArray[0]).intValue(); // 当前年份
+		int curMonth = new Integer(timeArray[1]).intValue();// 当前月份
+		int mArray[] = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30,
+				31 };
+		// 判断闰年的情况 ，2月份有29天；
+		if ((curyear % 400 == 0)
+				|| ((curyear % 100 != 0) && (curyear % 4 == 0))) {
 			mArray[1] = 29;
 		}
 		if (curMonth == 12) {
 			return mArray[0];
 		}
 		return mArray[curMonth - 1];
-		// ���Ҫ�����¸��µ�����ע�⴦���·�12���������ֹ����Խ�磻
-		// ���Ҫ�����ϸ��µ�����ע�⴦���·�1���������ֹ����Խ�磻
+		// 如果要返回下个月的天数，注意处理月份12的情况，防止数组越界；
+		// 如果要返回上个月的天数，注意处理月份1的情况，防止数组越界；
 	}
 
 	/**
-	 * ����ָ��Ϊ���Ϊyear�¶�month���·��ڣ���weekOfMonth�����ڵĵ�dayOfWeek���ǵ��µļ��š�<br>
+	 * 返回指定为年度为year月度为month的月份内，第weekOfMonth个星期的第dayOfWeek天。<br>
 	 * 00 00 00 01 02 03 04 <br>
 	 * 05 06 07 08 09 10 11<br>
 	 * 12 13 14 15 16 17 18<br>
 	 * 19 20 21 22 23 24 25<br>
 	 * 26 27 28 29 30 31 <br>
-	 * 2006��ĵ�һ���ܵ�1��7��Ϊ��05 06 07 01 02 03 04 <br>
-	 * 2006��ĵڶ����ܵ�1��7��Ϊ��12 13 14 08 09 10 11 <br>
-	 * 2006��ĵ�����ܵ�1��7��Ϊ��19 20 21 15 16 17 18 <br>
-	 * 2006��ĵ��ĸ��ܵ�1��7��Ϊ��26 27 28 22 23 24 25 <br>
-	 * 2006��ĵ�����ܵ�1��7��Ϊ��02 03 04 29 30 31 01 ������û�о��Զ�ת���¸����ˡ�
+	 * 2006年的第一个周的1到7天为：05 06 07 01 02 03 04 <br>
+	 * 2006年的第二个周的1到7天为：12 13 14 08 09 10 11 <br>
+	 * 2006年的第三个周的1到7天为：19 20 21 15 16 17 18 <br>
+	 * 2006年的第四个周的1到7天为：26 27 28 22 23 24 25 <br>
+	 * 2006年的第五个周的1到7天为：02 03 04 29 30 31 01 。本月没有就自动转到下个月了。
 	 * 
 	 * @param year
-	 *            ��ʽΪyyyy <br>
+	 *            形式为yyyy <br>
 	 * @param month
-	 *            ��ʽΪMM,����ֵ��[1-12]��<br>
+	 *            形式为MM,参数值在[1-12]。<br>
 	 * @param weekOfMonth
-	 *            ��[1-6],��Ϊһ���������6���ܡ�<br>
+	 *            在[1-6],因为一个月最多有6个周。<br>
 	 * @param dayOfWeek
-	 *            ������1��7֮�䣬����1��7��1��ʾ�����죬7��ʾ������<br>
-	 *            -6Ϊ������-1Ϊ�����壬0Ϊ������ <br>
+	 *            数字在1到7之间，包括1和7。1表示星期天，7表示星期六<br>
+	 *            -6为星期日-1为星期五，0为星期六 <br>
 	 * @return <type>int</type>
 	 */
-	public static int getDayofWeekInMonth(String year, String month, String weekOfMonth, String dayOfWeek) {
+	public static int getDayofWeekInMonth(String year, String month,
+			String weekOfMonth, String dayOfWeek) {
 		Calendar cal = new GregorianCalendar();
-		// �ھ���Ĭ�����Ի�����Ĭ��ʱ����ʹ�õ�ǰʱ�乹��һ��Ĭ�ϵ� GregorianCalendar��
+		// 在具有默认语言环境的默认时区内使用当前时间构造一个默认的 GregorianCalendar。
 		int y = new Integer(year).intValue();
 		int m = new Integer(month).intValue();
-		cal.clear();// ��������ǰ������
-		cal.set(y, m - 1, 1);// ����������Ϊ���µĵ�һ�졣
-		cal.set(Calendar.DAY_OF_WEEK_IN_MONTH, new Integer(weekOfMonth).intValue());
+		cal.clear();// 不保留以前的设置
+		cal.set(y, m - 1, 1);// 将日期设置为本月的第一天。
+		cal.set(Calendar.DAY_OF_WEEK_IN_MONTH, new Integer(weekOfMonth)
+				.intValue());
 		cal.set(Calendar.DAY_OF_WEEK, new Integer(dayOfWeek).intValue());
 		// System.out.print(cal.get(Calendar.MONTH)+" ");
-		// System.out.print("��"+cal.get(Calendar.WEEK_OF_MONTH)+"\t");
-		// WEEK_OF_MONTH��ʾ�����ڱ��µĵڼ����ܡ�����1�������ڼ�������ʾ�ڱ��µĵ�һ����
+		// System.out.print("当"+cal.get(Calendar.WEEK_OF_MONTH)+"\t");
+		// WEEK_OF_MONTH表示当天在本月的第几个周。不管1号是星期几，都表示在本月的第一个周
 		return cal.get(Calendar.DAY_OF_MONTH);
 	}
 
 	/**
-	 * ���ָ����������Сʱ���룬����һ��java.Util.Date����
+	 * 根据指定的年月日小时分秒，返回一个java.Util.Date对象。
 	 * 
-	 * @param year
-	 *            ��
-	 * @param month
-	 *            �� 0-11
-	 * @param date
-	 *            ��
-	 * @param hourOfDay
-	 *            Сʱ 0-23
-	 * @param minute
-	 *            �� 0-59
-	 * @param second
-	 *            �� 0-59
-	 * @return һ��Date����
+	 * @param year 年
+ 	 * @param month 月 0-11
+	 * @param date 日
+	 * @param hourOfDay 小时 0-23
+	 * @param minute 分 0-59
+	 * @param second 秒 0-59
+	 * @return 一个Date对象。
 	 */
-	public static Date getDate(int year, int month, int date, int hourOfDay, int minute, int second) {
+	public static Date getDate(int year, int month, int date, int hourOfDay,
+			int minute, int second) {
 		Calendar cal = new GregorianCalendar();
 		cal.set(year, month, date, hourOfDay, minute, second);
 		return cal.getTime();
 	}
 
 	/**
-	 * ���ָ�����ꡢ�¡��շ��ص�ǰ�����ڼ���1��ʾ�����졢2��ʾ����һ��7��ʾ������
+	 * 根据指定的年、月、日返回当前是星期几。1表示星期天、2表示星期一、7表示星期六。
 	 * 
 	 * @param year
 	 * @param month
-	 *            month�Ǵ�1��ʼ��12����
+	 *            month是从1开始的12结束
 	 * @param day
-	 * @return ����һ����?�����������ڼ������֡�1��ʾ�����졢2��ʾ����һ��7��ʾ������
+	 * @return 返回一个代表当期日期是星期几的数字。1表示星期天、2表示星期一、7表示星期六。
 	 */
 	public static int getDayOfWeek(String year, String month, String day) {
-		Calendar cal = new GregorianCalendar(new Integer(year).intValue(), new Integer(month).intValue() - 1, new Integer(day)
-				.intValue());
+		Calendar cal = new GregorianCalendar(new Integer(year).intValue(),
+				new Integer(month).intValue() - 1, new Integer(day).intValue());
 		return cal.get(Calendar.DAY_OF_WEEK);
 	}
 
 	/**
-	 * ���ָ�����ꡢ�¡��շ��ص�ǰ�����ڼ���1��ʾ�����졢2��ʾ����һ��7��ʾ������
+	 * 根据指定的年、月、日返回当前是星期几。1表示星期天、2表示星期一、7表示星期六。
 	 * 
 	 * @param date
-	 *            "yyyy/MM/dd",����"yyyy-MM-dd"
-	 * @return ����һ����?�����������ڼ������֡�1��ʾ�����졢2��ʾ����һ��7��ʾ������
+	 *            "yyyy/MM/dd",或者"yyyy-MM-dd"
+	 * @return 返回一个代表当期日期是星期几的数字。1表示星期天、2表示星期一、7表示星期六。
 	 */
 	public static int getDayOfWeek(String date) {
 		String[] temp = null;
@@ -475,24 +571,21 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ���ص�ǰ���������ڼ������磺�����ա�����һ��������ȵȡ�
-	 * 
-	 * @param date
-	 *            ��ʽΪ yyyy/MM/dd ���� yyyy-MM-dd
-	 * @return ���ص�ǰ���������ڼ�
+	 *  返回当前日期是星期几。例如：星期日、星期一、星期六等等。
+	 * @param date 格式为 yyyy/MM/dd 或者 yyyy-MM-dd
+	 * @return 返回当前日期是星期几
 	 */
-	public static String getChinaDayOfWeek(String date) {
-		String[] weeks = new String[] { "������", "����һ", "���ڶ�", "������", "������", "������", "������" };
+	public static String getChinaDayOfWeek(String date){
+		String[] weeks = new String[]{"星期日","星期一","星期二","星期三","星期四","星期五","星期六"};
 		int week = getDayOfWeek(date);
-		return weeks[week - 1];
+		return weeks[week-1];
 	}
-
 	/**
-	 * ���ָ�����ꡢ�¡��շ��ص�ǰ�����ڼ���1��ʾ�����졢2��ʾ����һ��7��ʾ������
+	 * 根据指定的年、月、日返回当前是星期几。1表示星期天、2表示星期一、7表示星期六。
 	 * 
 	 * @param date
-	 * 
-	 * @return ����һ����?�����������ڼ������֡�1��ʾ�����졢2��ʾ����һ��7��ʾ������
+	 *           
+	 * @return 返回一个代表当期日期是星期几的数字。1表示星期天、2表示星期一、7表示星期六。
 	 */
 	public static int getDayOfWeek(Date date) {
 		Calendar cal = new GregorianCalendar();
@@ -501,30 +594,31 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * �����ƶ��������ڵ�����һ���еĵڼ����ܡ�<br>
+	 * 返回制定日期所在的周是一年中的第几个周。<br>
 	 * created by wangmj at 20060324.<br>
 	 * 
 	 * @param year
 	 * @param month
-	 *            ��Χ1-12<br>
+	 *            范围1-12<br>
 	 * @param day
-	 * @return int
+	 * @return int 
 	 */
 	public static int getWeekOfYear(String year, String month, String day) {
 		Calendar cal = new GregorianCalendar();
 		cal.clear();
-		cal.set(new Integer(year).intValue(), new Integer(month).intValue() - 1, new Integer(day).intValue());
+		cal.set(new Integer(year).intValue(),
+				new Integer(month).intValue() - 1, new Integer(day).intValue());
 		return cal.get(Calendar.WEEK_OF_YEAR);
 	}
 
 	/**
-	 * ȡ�ø����ڼ���һ�����������ڶ���.
+	 * 取得给定日期加上一定天数后的日期对象.
 	 * 
 	 * @param date
-	 *            ������ڶ���
+	 *            给定的日期对象
 	 * @param amount
-	 *            ��Ҫ��ӵ������������ǰ������ʹ�ø���Ϳ���.
-	 * @return Date ����һ�������Ժ��Date����.
+	 *            需要添加的天数，如果是向前的天数，使用负数就可以.
+	 * @return Date 加上一定天数以后的Date对象.
 	 */
 	public static Date getDateAdd(Date date, int amount) {
 		Calendar cal = new GregorianCalendar();
@@ -534,15 +628,15 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ȡ�ø����ڼ���һ�����������ڶ���.
+	 * 取得给定日期加上一定天数后的日期对象.
 	 * 
 	 * @param date
-	 *            ������ڶ���
+	 *            给定的日期对象
 	 * @param amount
-	 *            ��Ҫ��ӵ������������ǰ������ʹ�ø���Ϳ���.
+	 *            需要添加的天数，如果是向前的天数，使用负数就可以.
 	 * @param format
-	 *            �����ʽ.
-	 * @return Date ����һ�������Ժ��Date����.
+	 *            输出格式.
+	 * @return Date 加上一定天数以后的Date对象.
 	 */
 	public static String getFormatDateAdd(Date date, int amount, String format) {
 		Calendar cal = new GregorianCalendar();
@@ -552,13 +646,13 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��õ�ǰ���ڹ̶������������ڣ���ǰ60��dateAdd(-60)
+	 * 获得当前日期固定间隔天数的日期，如前60天dateAdd(-60)
 	 * 
 	 * @param amount
-	 *            �����ļ�����ڳ��ȣ���ǰΪ�������Ϊ��
+	 *            距今天的间隔日期长度，向前为负，向后为正
 	 * @param format
-	 *            ������ڵĸ�ʽ.
-	 * @return java.lang.String ���ո�ʽ����ļ���������ַ�.
+	 *            输出日期的格式.
+	 * @return java.lang.String 按照格式输出的间隔的日期字符串.
 	 */
 	public static String getFormatCurrentAdd(int amount, String format) {
 
@@ -568,54 +662,51 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ȡ�ø��ʽ��������������
+	 * 取得给定格式的昨天的日期输出
 	 * 
 	 * @param format
-	 *            ��������ĸ�ʽ
-	 * @return String ���ʽ�������ַ�.
+	 *            日期输出的格式
+	 * @return String 给定格式的日期字符串.
 	 */
 	public static String getFormatYestoday(String format) {
 		return getFormatCurrentAdd(-1, format);
 	}
 
 	/**
-	 * ����ָ�����ڵ�ǰһ�졣<br>
-	 * 
-	 * @param sourceDate
-	 * @param format
-	 *            yyyy MM dd hh mm ss
-	 * @return ���������ַ���ʽ��formcatһ�¡�
+	 * 返回指定日期的前一天。<br>
+	 * @param sourceDate 
+	 * @param format  yyyy MM  dd  hh mm  ss
+	 * @return  返回日期字符串，形式和formcat一致。
 	 */
 	public static String getYestoday(String sourceDate, String format) {
-		return getFormatDateAdd(getDateFromString(sourceDate, format), -1, format);
+		return getFormatDateAdd(getDateFromString(sourceDate, format), -1,
+				format);
 	}
 
 	/**
-	 * ������������ڣ�<br>
-	 * 
+	 * 返回明天的日期，<br>
 	 * @param format
-	 * @return ���������ַ���ʽ��formcatһ�¡�
+	 * @return 返回日期字符串，形式和formcat一致。
 	 */
 	public static String getFormatTomorrow(String format) {
 		return getFormatCurrentAdd(1, format);
 	}
 
 	/**
-	 * ����ָ�����ڵĺ�һ�졣<br>
-	 * 
+	 * 返回指定日期的后一天。<br>
 	 * @param sourceDate
 	 * @param format
-	 * @return ���������ַ���ʽ��formcatһ�¡�
+	 * @return 返回日期字符串，形式和formcat一致。
 	 */
 	public static String getFormatDateTommorrow(String sourceDate, String format) {
-		return getFormatDateAdd(getDateFromString(sourceDate, format), 1, format);
+		return getFormatDateAdd(getDateFromString(sourceDate, format), 1,
+				format);
 	}
 
 	/**
-	 * ��������Ĭ�� TimeZone�������ָ����ʽ��ʱ���ַ�
-	 * 
+	 * 根据主机的默认 TimeZone，来获得指定形式的时间字符串。
 	 * @param dateFormat
-	 * @return ���������ַ���ʽ��formcatһ�¡�
+	 * @return  返回日期字符串，形式和formcat一致。
 	 */
 	public static String getCurrentDateString(String dateFormat) {
 		Calendar cal = Calendar.getInstance(TimeZone.getDefault());
@@ -625,66 +716,66 @@ public final class DateUtil implements Serializable {
 		return sdf.format(cal.getTime());
 	}
 
-	// /**
-	// * @deprecated ������ʹ�á� ���ص�ǰʱ�䴮 ��ʽ:yyMMddhhmmss,���ϴ�����ʱʹ��
-	// *
-	// * @return String
-	// */
-	// public static String getCurDate() {
-	// GregorianCalendar gcDate = new GregorianCalendar();
-	// int year = gcDate.get(GregorianCalendar.YEAR);
-	// int month = gcDate.get(GregorianCalendar.MONTH) + 1;
-	// int day = gcDate.get(GregorianCalendar.DAY_OF_MONTH);
-	// int hour = gcDate.get(GregorianCalendar.HOUR_OF_DAY);
-	// int minute = gcDate.get(GregorianCalendar.MINUTE);
-	// int sen = gcDate.get(GregorianCalendar.SECOND);
-	// String y;
-	// String m;
-	// String d;
-	// String h;
-	// String n;
-	// String s;
-	// y = new Integer(year).toString();
-	//
-	// if (month < 10) {
-	// m = "0" + new Integer(month).toString();
-	// } else {
-	// m = new Integer(month).toString();
-	// }
-	//
-	// if (day < 10) {
-	// d = "0" + new Integer(day).toString();
-	// } else {
-	// d = new Integer(day).toString();
-	// }
-	//
-	// if (hour < 10) {
-	// h = "0" + new Integer(hour).toString();
-	// } else {
-	// h = new Integer(hour).toString();
-	// }
-	//
-	// if (minute < 10) {
-	// n = "0" + new Integer(minute).toString();
-	// } else {
-	// n = new Integer(minute).toString();
-	// }
-	//
-	// if (sen < 10) {
-	// s = "0" + new Integer(sen).toString();
-	// } else {
-	// s = new Integer(sen).toString();
-	// }
-	//
-	// return "" + y + m + d + h + n + s;
-	// }
+	/**
+	 * @deprecated 不鼓励使用。
+	 * 返回当前时间串 格式:yyMMddhhmmss,在上传附件时使用
+	 * 
+	 * @return String
+	 */
+	public static String getCurDate() {
+		GregorianCalendar gcDate = new GregorianCalendar();
+		int year = gcDate.get(GregorianCalendar.YEAR);
+		int month = gcDate.get(GregorianCalendar.MONTH) + 1;
+		int day = gcDate.get(GregorianCalendar.DAY_OF_MONTH);
+		int hour = gcDate.get(GregorianCalendar.HOUR_OF_DAY);
+		int minute = gcDate.get(GregorianCalendar.MINUTE);
+		int sen = gcDate.get(GregorianCalendar.SECOND);
+		String y;
+		String m;
+		String d;
+		String h;
+		String n;
+		String s;
+		y = new Integer(year).toString();
+
+		if (month < 10) {
+			m = "0" + new Integer(month).toString();
+		} else {
+			m = new Integer(month).toString();
+		}
+
+		if (day < 10) {
+			d = "0" + new Integer(day).toString();
+		} else {
+			d = new Integer(day).toString();
+		}
+
+		if (hour < 10) {
+			h = "0" + new Integer(hour).toString();
+		} else {
+			h = new Integer(hour).toString();
+		}
+
+		if (minute < 10) {
+			n = "0" + new Integer(minute).toString();
+		} else {
+			n = new Integer(minute).toString();
+		}
+
+		if (sen < 10) {
+			s = "0" + new Integer(sen).toString();
+		} else {
+			s = new Integer(sen).toString();
+		}
+
+		return "" + y + m + d + h + n + s;
+	}
 
 	/**
-	 * ��ݸ�ĸ�ʽ������ʱ���ַ� ��getFormatDate(String format)���ơ�
+	 * 根据给定的格式，返回时间字符串。 和getFormatDate(String format)相似。
 	 * 
-	 * @param format
-	 *            yyyy MM dd hh mm ss
-	 * @return ����һ��ʱ���ַ�
+	 * @param format  yyyy  MM dd  hh mm ss
+	 * @return 返回一个时间字符串
 	 */
 	public static String getCurTimeByFormat(String format) {
 		Date newdate = new Date(System.currentTimeMillis());
@@ -693,13 +784,13 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��ȡ����ʱ�䴮ʱ��Ĳ�ֵ����λΪ��
+	 * 获取两个时间串时间的差值，单位为秒
 	 * 
 	 * @param startTime
-	 *            ��ʼʱ�� yyyy-MM-dd HH:mm:ss
+	 *            开始时间 yyyy-MM-dd HH:mm:ss
 	 * @param endTime
-	 *            ����ʱ�� yyyy-MM-dd HH:mm:ss
-	 * @return ����ʱ��Ĳ�ֵ(��)
+	 *            结束时间 yyyy-MM-dd HH:mm:ss
+	 * @return 两个时间的差值(秒)
 	 */
 	public static long getDiff(String startTime, String endTime) {
 		long diff = 0;
@@ -716,38 +807,38 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��ȡСʱ/����/��
+	 * 获取小时/分钟/秒
 	 * 
 	 * @param second
-	 *            ��
-	 * @return ��Сʱ�����ӡ����ʱ���ַ�����3Сʱ23����13�롣
+	 *            秒
+	 * @return 包含小时、分钟、秒的时间字符串，例如3小时23分钟13秒。
 	 */
 	public static String getHour(long second) {
 		long hour = second / 60 / 60;
 		long minute = (second - hour * 60 * 60) / 60;
 		long sec = (second - hour * 60 * 60) - minute * 60;
 
-		return hour + "Сʱ" + minute + "����" + sec + "��";
+		return hour + "小时" + minute + "分钟" + sec + "秒";
 
 	}
 
 	/**
-	 * ����ָ��ʱ���ַ�
+	 * 返回指定时间字符串。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd HH:mm:ss
+	 * 格式：yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @return String ָ����ʽ�������ַ�.
+	 * @return String 指定格式的日期字符串.
 	 */
 	public static String getDateTime(long microsecond) {
 		return getFormatDateTime(new Date(microsecond), "yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**
-	 * ���ص�ǰʱ���ʵ��Сʱ�������ʱ�䡣
+	 * 返回当前时间加实数小时后的日期时间。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd HH:mm:ss
+	 * 格式：yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @return Float �Ӽ�ʵ��Сʱ.
+	 * @return Float 加几实数小时.
 	 */
 	public static String getDateByAddFltHour(float flt) {
 		int addMinute = (int) (flt * 60);
@@ -758,11 +849,11 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ����ָ��ʱ���ָ��Сʱ��������ʱ�䡣
+	 * 返回指定时间加指定小时数后的日期时间。
 	 * <p>
-	 * ��ʽ��yyyy-MM-dd HH:mm:ss
+	 * 格式：yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @return ʱ��.
+	 * @return 时间.
 	 */
 	public static String getDateByAddHour(String datetime, int minute) {
 		String returnTime = null;
@@ -782,13 +873,13 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��ȡ����ʱ�䴮ʱ��Ĳ�ֵ����λΪСʱ
+	 * 获取两个时间串时间的差值，单位为小时
 	 * 
 	 * @param startTime
-	 *            ��ʼʱ�� yyyy-MM-dd HH:mm:ss
+	 *            开始时间 yyyy-MM-dd HH:mm:ss
 	 * @param endTime
-	 *            ����ʱ�� yyyy-MM-dd HH:mm:ss
-	 * @return ����ʱ��Ĳ�ֵ(��)
+	 *            结束时间 yyyy-MM-dd HH:mm:ss
+	 * @return 两个时间的差值(秒)
 	 */
 	public static int getDiffHour(String startTime, String endTime) {
 		long diff = 0;
@@ -805,19 +896,19 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ������ݵ�������
-	 * 
+	 * 返回年份的下拉框。
 	 * @param selectName
-	 *            ���������
+	 *            下拉框名称
 	 * @param value
-	 *            ��ǰ�������ֵ
+	 *            当前下拉框的值
 	 * @param startYear
-	 *            ��ʼ���
+	 *            开始年份
 	 * @param endYear
-	 *            �������
-	 * @return ����������html
+	 *            结束年份
+	 * @return 年份下拉框的html
 	 */
-	public static String getYearSelect(String selectName, String value, int startYear, int endYear) {
+	public static String getYearSelect(String selectName, String value,
+			int startYear, int endYear) {
 		int start = startYear;
 		int end = endYear;
 		if (startYear > endYear) {
@@ -828,7 +919,8 @@ public final class DateUtil implements Serializable {
 		sb.append("<select name=\"" + selectName + "\">");
 		for (int i = start; i <= end; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -838,19 +930,20 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ������ݵ�������
-	 * 
+	 * 返回年份的下拉框。
 	 * @param selectName
-	 *            ���������
+	 *            下拉框名称
 	 * @param value
-	 *            ��ǰ�������ֵ
+	 *            当前下拉框的值
 	 * @param startYear
-	 *            ��ʼ���
+	 *            开始年份
 	 * @param endYear
-	 *            ������� ���翪ʼ���Ϊ2001�������Ϊ2005��ô������������ֵ����2001��2002��2003��2004��2005����
-	 * @return ������ݵ��������html��
+	 *            结束年份
+	 *            例如开始年份为2001结束年份为2005那么下拉框就有五个值。（2001、2002、2003、2004、2005）。
+	 * @return 返回年份的下拉框的html。
 	 */
-	public static String getYearSelect(String selectName, String value, int startYear, int endYear, boolean hasBlank) {
+	public static String getYearSelect(String selectName, String value,
+			int startYear, int endYear, boolean hasBlank) {
 		int start = startYear;
 		int end = endYear;
 		if (startYear > endYear) {
@@ -864,7 +957,8 @@ public final class DateUtil implements Serializable {
 		}
 		for (int i = start; i <= end; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -874,21 +968,22 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ������ݵ�������
-	 * 
+	 * 返回年份的下拉框。
 	 * @param selectName
-	 *            ���������
+	 *            下拉框名称
 	 * @param value
-	 *            ��ǰ�������ֵ
+	 *            当前下拉框的值
 	 * @param startYear
-	 *            ��ʼ���
+	 *            开始年份
 	 * @param endYear
-	 *            �������
+	 *            结束年份
 	 * @param js
-	 *            �����jsΪjs�ַ����� " onchange=\"changeYear()\" " ,�����κ�js�ķ����Ϳ�����jspҳ���б�д���������롣
-	 * @return ������ݵ�������
+	 *            这里的js为js字符串。例如 " onchange=\"changeYear()\" "
+	 *            ,这样任何js的方法就可以在jsp页面中编写，方便引入。
+	 * @return 返回年份的下拉框。
 	 */
-	public static String getYearSelect(String selectName, String value, int startYear, int endYear, boolean hasBlank, String js) {
+	public static String getYearSelect(String selectName, String value,
+			int startYear, int endYear, boolean hasBlank,String js) {
 		int start = startYear;
 		int end = endYear;
 		if (startYear > endYear) {
@@ -896,14 +991,15 @@ public final class DateUtil implements Serializable {
 			end = startYear;
 		}
 		StringBuffer sb = new StringBuffer("");
-
+		
 		sb.append("<select name=\"" + selectName + "\" " + js + ">");
 		if (hasBlank) {
 			sb.append("<option value=\"\"></option>");
-		}
+		}		
 		for (int i = start; i <= end; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -911,23 +1007,23 @@ public final class DateUtil implements Serializable {
 		sb.append("</select>");
 		return sb.toString();
 	}
-
 	/**
-	 * ������ݵ�������
-	 * 
+	 * 返回年份的下拉框。
 	 * @param selectName
-	 *            ���������
+	 *            下拉框名称
 	 * @param value
-	 *            ��ǰ�������ֵ
+	 *            当前下拉框的值
 	 * @param startYear
-	 *            ��ʼ���
+	 *            开始年份
 	 * @param endYear
-	 *            �������
+	 *            结束年份
 	 * @param js
-	 *            �����jsΪjs�ַ����� " onchange=\"changeYear()\" " ,�����κ�js�ķ����Ϳ�����jspҳ���б�д���������롣
-	 * @return ������ݵ�������
+	 *            这里的js为js字符串。例如 " onchange=\"changeYear()\" "
+	 *            ,这样任何js的方法就可以在jsp页面中编写，方便引入。
+	 * @return 返回年份的下拉框。
 	 */
-	public static String getYearSelect(String selectName, String value, int startYear, int endYear, String js) {
+	public static String getYearSelect(String selectName, String value,
+			int startYear, int endYear, String js) {
 		int start = startYear;
 		int end = endYear;
 		if (startYear > endYear) {
@@ -938,7 +1034,8 @@ public final class DateUtil implements Serializable {
 		sb.append("<select name=\"" + selectName + "\" " + js + ">");
 		for (int i = start; i <= end; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -946,16 +1043,16 @@ public final class DateUtil implements Serializable {
 		sb.append("</select>");
 		return sb.toString();
 	}
-
 	/**
-	 * ��ȡ�·ݵ�������
+	 * 获取月份的下拉框
 	 * 
 	 * @param selectName
 	 * @param value
 	 * @param hasBlank
-	 * @return �����·ݵ�������
+	 * @return 返回月份的下拉框。
 	 */
-	public static String getMonthSelect(String selectName, String value, boolean hasBlank) {
+	public static String getMonthSelect(String selectName, String value,
+			boolean hasBlank) {
 		StringBuffer sb = new StringBuffer("");
 		sb.append("<select name=\"" + selectName + "\">");
 		if (hasBlank) {
@@ -963,7 +1060,8 @@ public final class DateUtil implements Serializable {
 		}
 		for (int i = 1; i <= 12; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -973,15 +1071,16 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��ȡ�·ݵ�������
+	 * 获取月份的下拉框
 	 * 
 	 * @param selectName
 	 * @param value
 	 * @param hasBlank
 	 * @param js
-	 * @return �����·ݵ�������
+	 * @return 返回月份的下拉框。
 	 */
-	public static String getMonthSelect(String selectName, String value, boolean hasBlank, String js) {
+	public static String getMonthSelect(String selectName, String value,
+			boolean hasBlank, String js) {
 		StringBuffer sb = new StringBuffer("");
 		sb.append("<select name=\"" + selectName + "\" " + js + ">");
 		if (hasBlank) {
@@ -989,7 +1088,8 @@ public final class DateUtil implements Serializable {
 		}
 		for (int i = 1; i <= 12; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -999,14 +1099,15 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��ȡ���������Ĭ�ϵ�Ϊ1-31�� ע�⣺�˷������ܹ����·����������������
-	 * 
+	 * 获取天的下拉框，默认的为1-31。
+	 * 注意：此方法不能够和月份下拉框进行联动。
 	 * @param selectName
 	 * @param value
 	 * @param hasBlank
-	 * @return ������������
+	 * @return 获得天的下拉框
 	 */
-	public static String getDaySelect(String selectName, String value, boolean hasBlank) {
+	public static String getDaySelect(String selectName, String value,
+			boolean hasBlank) {
 		StringBuffer sb = new StringBuffer("");
 		sb.append("<select name=\"" + selectName + "\">");
 		if (hasBlank) {
@@ -1014,7 +1115,8 @@ public final class DateUtil implements Serializable {
 		}
 		for (int i = 1; i <= 31; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -1024,15 +1126,16 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��ȡ���������Ĭ�ϵ�Ϊ1-31
+	 * 获取天的下拉框，默认的为1-31
 	 * 
 	 * @param selectName
 	 * @param value
 	 * @param hasBlank
 	 * @param js
-	 * @return ��ȡ���������
+	 * @return 获取天的下拉框
 	 */
-	public static String getDaySelect(String selectName, String value, boolean hasBlank, String js) {
+	public static String getDaySelect(String selectName, String value,
+			boolean hasBlank, String js) {
 		StringBuffer sb = new StringBuffer("");
 		sb.append("<select name=\"" + selectName + "\" " + js + ">");
 		if (hasBlank) {
@@ -1040,7 +1143,8 @@ public final class DateUtil implements Serializable {
 		}
 		for (int i = 1; i <= 31; i++) {
 			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
+				sb.append("<option value=\"" + i + "\" selected>" + i
+						+ "</option>");
 			} else {
 				sb.append("<option value=\"" + i + "\">" + i + "</option>");
 			}
@@ -1050,33 +1154,26 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ��������֮���ж��ٸ���ĩ�������ĩ��ָ������������죬һ����ĩ���ؽ��Ϊ2������Ϊ4���Դ����ơ��� ���˷���Ŀǰ����ͳ��˾���ó���¼���� ע�⿪ʼ���ںͽ�������Ҫͳһ������
-	 * 
+	 *  计算两天之间有多少个周末（这个周末，指星期六和星期天，一个周末返回结果为2，两个为4，以此类推。）
+	 * （此方法目前用于统计司机用车记录。）
 	 * @param startDate
-	 *            ��ʼ���� ����ʽ"yyyy/MM/dd" ����"yyyy-MM-dd"
+	 *            开始日期 ，格式"yyyy/MM/dd"
 	 * @param endDate
-	 *            �������� ����ʽ"yyyy/MM/dd"����"yyyy-MM-dd"
-	 * @return int
+	 *            结束日期 ，格式"yyyy/MM/dd"
+	 * @return int 
 	 */
 	public static int countWeekend(String startDate, String endDate) {
 		int result = 0;
 		Date sdate = null;
 		Date edate = null;
-		if (startDate.indexOf("/") > 0 && endDate.indexOf("/") > 0) {
-			sdate = getDateObj(startDate, "/"); // ��ʼ����
-			edate = getDateObj(endDate, "/");// ��������
-		}
-		if (startDate.indexOf("-") > 0 && endDate.indexOf("-") > 0) {
-			sdate = getDateObj(startDate, "-"); // ��ʼ����
-			edate = getDateObj(endDate, "-");// ��������
-		}
-
-		// ���ȼ����������Щ���ڣ�Ȼ���ҳ������������������
+		sdate = getDateObj(startDate, "/"); // 开始日期
+		edate = getDateObj(endDate, "/");// 结束日期
+		// 首先计算出都有那些日期，然后找出星期六星期天的日期
 		int sumDays = Math.abs(getDiffDays(startDate, endDate));
 		int dayOfWeek = 0;
 		for (int i = 0; i <= sumDays; i++) {
-			dayOfWeek = getDayOfWeek(getDateAdd(sdate, i)); // ����ÿ��һ�������
-			if (dayOfWeek == 1 || dayOfWeek == 7) { // 1 ������ 7������
+			dayOfWeek = getDayOfWeek(getDateAdd(sdate, i)); // 计算每过一天的日期
+			if (dayOfWeek == 1 || dayOfWeek == 7) { // 1 星期天 7星期六
 				result++;
 			}
 		}
@@ -1084,23 +1181,17 @@ public final class DateUtil implements Serializable {
 	}
 
 	/**
-	 * ������������֮���������졣 ע�⿪ʼ���ںͽ�������Ҫͳһ������
+	 * 返回两个日期之间相差多少天。
 	 * 
 	 * @param startDate
-	 *            ��ʽ"yyyy/MM/dd" ����"yyyy-MM-dd"
+	 *            格式"yyyy/MM/dd"
 	 * @param endDate
-	 *            ��ʽ"yyyy/MM/dd" ����"yyyy-MM-dd"
-	 * @return ����
+	 *            格式"yyyy/MM/dd"
+	 * @return 整数。
 	 */
 	public static int getDiffDays(String startDate, String endDate) {
 		long diff = 0;
-		SimpleDateFormat ft = null;
-		if (startDate.indexOf("/") > 0 && endDate.indexOf("/") > 0) {
-			ft = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		}
-		if (startDate.indexOf("-") > 0 && endDate.indexOf("-") > 0) {
-			ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		}
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		try {
 			Date sDate = ft.parse(startDate + " 00:00:00");
 			Date eDate = ft.parse(endDate + " 00:00:00");
@@ -1112,249 +1203,30 @@ public final class DateUtil implements Serializable {
 		return (int) diff;
 
 	}
-
+	
 	/**
-	 * ������������֮�����ϸ��������(������ʼ���ںͽ�������)�� ���磺2007/07/01 ��2007/07/03 ,��ô�������� {"2007/07/01","2007/07/02","2007/07/03"} ע�⿪ʼ���ںͽ�������Ҫͳһ������
-	 * 
-	 * @param startDate
-	 *            ��ʽ"yyyy/MM/dd"���� yyyy-MM-dd
-	 * @param endDate
-	 *            ��ʽ"yyyy/MM/dd"���� yyyy-MM-dd
-	 * @return ����һ���ַ��������
+	 * 返回两个日期之间的详细日期数组(包括开始日期和结束日期)。
+	 * 例如：2007/07/01 到2007/07/03 ,那么返回数组
+	 * {"2007/07/01","2007/07/02","2007/07/03"}
+	 * @param startDate 格式"yyyy/MM/dd"
+	 * @param endDate  格式"yyyy/MM/dd"
+	 * @return 返回一个字符串数组对象
 	 */
-	public static String[] getArrayDiffDays(String startDate, String endDate) {
-		int LEN = 0; // ������������֮���ܹ��ж�����
-		// ���������ںͿ�ʼ������ͬ
-		if (startDate.equals(endDate)) {
-			return new String[] { startDate };
+	public static String[] getArrayDiffDays(String startDate,String endDate){
+		int LEN = 0; //用来计算两天之间总共有多少天
+		//如果结束日期和开始日期相同
+		if(startDate.equals(endDate)){
+			return new String[]{startDate};
 		}
 		Date sdate = null;
-		if (startDate.indexOf("/") > 0 && endDate.indexOf("/") > 0) {
-			sdate = getDateObj(startDate, "/"); // ��ʼ����
+		sdate = getDateObj(startDate, "/"); // 开始日期
+		LEN = getDiffDays(startDate,endDate);
+		String[] dateResult = new String[LEN+1];
+		dateResult[0]=startDate;
+		for(int i=1;i<LEN+1;i++){
+			dateResult[i] = getFormatDateTime( getDateAdd(sdate, i),"yyyy/MM/dd");
 		}
-		if (startDate.indexOf("-") > 0 && endDate.indexOf("-") > 0) {
-			sdate = getDateObj(startDate, "-"); // ��ʼ����
-		}
-
-		LEN = getDiffDays(startDate, endDate);
-		String[] dateResult = new String[LEN + 1];
-		dateResult[0] = startDate;
-		for (int i = 1; i < LEN + 1; i++) {
-			if (startDate.indexOf("/") > 0 && endDate.indexOf("/") > 0) {
-				dateResult[i] = getFormatDateTime(getDateAdd(sdate, i), "yyyy/MM/dd");
-			}
-			if (startDate.indexOf("-") > 0 && endDate.indexOf("-") > 0) {
-				dateResult[i] = getFormatDateTime(getDateAdd(sdate, i), "yyyy-MM-dd");
-			}
-		}
-
+		
 		return dateResult;
-	}
-
-	/**
-	 * �ж�һ�������Ƿ��ڿ�ʼ���ںͽ�������֮�䡣
-	 * 
-	 * @param srcDate
-	 *            Ŀ������ yyyy/MM/dd ���� yyyy-MM-dd
-	 * @param startDate
-	 *            ��ʼ���� yyyy/MM/dd ���� yyyy-MM-dd
-	 * @param endDate
-	 *            �������� yyyy/MM/dd ���� yyyy-MM-dd
-	 * @return ���ڵ��ڿ�ʼ����С�ڵ��ڽ������ڣ���ô����true�����򷵻�false
-	 */
-	public static boolean isInStartEnd(String srcDate, String startDate, String endDate) {
-		if (startDate.compareTo(srcDate) <= 0 && endDate.compareTo(srcDate) >= 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * ��ȡ���������Ĭ�ϵ�Ϊ1-4�� ע�⣺�˷������ܹ����·����������������
-	 * 
-	 * @param selectName
-	 * @param value
-	 * @param hasBlank
-	 * @return ��ü��ȵ�������
-	 */
-	public static String getQuarterSelect(String selectName, String value, boolean hasBlank) {
-		StringBuffer sb = new StringBuffer("");
-		sb.append("<select name=\"" + selectName + "\">");
-		if (hasBlank) {
-			sb.append("<option value=\"\"></option>");
-		}
-		for (int i = 1; i <= 4; i++) {
-			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
-			} else {
-				sb.append("<option value=\"" + i + "\">" + i + "</option>");
-			}
-		}
-		sb.append("</select>");
-		return sb.toString();
-	}
-
-	/**
-	 * ��ȡ���ȵ�������Ĭ�ϵ�Ϊ1-4
-	 * 
-	 * @param selectName
-	 * @param value
-	 * @param hasBlank
-	 * @param js
-	 * @return ��ȡ���ȵ�������
-	 */
-	public static String getQuarterSelect(String selectName, String value, boolean hasBlank, String js) {
-		StringBuffer sb = new StringBuffer("");
-		sb.append("<select name=\"" + selectName + "\" " + js + ">");
-		if (hasBlank) {
-			sb.append("<option value=\"\"></option>");
-		}
-		for (int i = 1; i <= 4; i++) {
-			if (!value.trim().equals("") && i == Integer.parseInt(value)) {
-				sb.append("<option value=\"" + i + "\" selected>" + i + "</option>");
-			} else {
-				sb.append("<option value=\"" + i + "\">" + i + "</option>");
-			}
-		}
-		sb.append("</select>");
-		return sb.toString();
-	}
-
-	/**
-	 * ����ʽΪyyyy����yyyy.MM����yyyy.MM.dd������ת��Ϊyyyy/MM/dd�ĸ�ʽ��λ����ģ�����01��<br>
-	 * ����.1999 = 1999/01/01 ���磺1989.02=1989/02/01
-	 * 
-	 * @param argDate
-	 *            ��Ҫ����ת�������ڡ���ʽ����Ϊyyyy����yyyy.MM����yyyy.MM.dd
-	 * @return ���ظ�ʽΪyyyy/MM/dd���ַ�
-	 */
-	public static String changeDate(String argDate) {
-		if (argDate == null || argDate.trim().equals("")) {
-			return "";
-		}
-		String result = "";
-		// ����Ǹ�ʽΪyyyy/MM/dd�ľ�ֱ�ӷ���
-		if (argDate.length() == 10 && argDate.indexOf("/") > 0) {
-			return argDate;
-		}
-		String[] str = argDate.split("[.]"); // .�Ƚ�����
-		int LEN = str.length;
-		for (int i = 0; i < LEN; i++) {
-			if (str[i].length() == 1) {
-				if (str[i].equals("0")) {
-					str[i] = "01";
-				} else {
-					str[i] = "0" + str[i];
-				}
-			}
-		}
-		if (LEN == 1) {
-			result = argDate + "/01/01";
-		}
-		if (LEN == 2) {
-			result = str[0] + "/" + str[1] + "/01";
-		}
-		if (LEN == 3) {
-			result = str[0] + "/" + str[1] + "/" + str[2];
-		}
-		return result;
-	}
-
-	/**
-	 * ����ʽΪyyyy����yyyy.MM����yyyy.MM.dd������ת��Ϊyyyy/MM/dd�ĸ�ʽ��λ����ģ�����01��<br>
-	 * ����.1999 = 1999/01/01 ���磺1989.02=1989/02/01
-	 * 
-	 * @param argDate
-	 *            ��Ҫ����ת�������ڡ���ʽ����Ϊyyyy����yyyy.MM����yyyy.MM.dd
-	 * @return ���ظ�ʽΪyyyy/MM/dd���ַ�
-	 */
-	public static String changeDateWithSplit(String argDate, String split) {
-		if (argDate == null || argDate.trim().equals("")) {
-			return "";
-		}
-		if (split == null || split.trim().equals("")) {
-			split = "-";
-		}
-		String result = "";
-		// ����Ǹ�ʽΪyyyy/MM/dd�ľ�ֱ�ӷ���
-		if (argDate.length() == 10 && argDate.indexOf("/") > 0) {
-			return argDate;
-		}
-		// ����Ǹ�ʽΪyyyy-MM-dd�ľ�ֱ�ӷ���
-		if (argDate.length() == 10 && argDate.indexOf("-") > 0) {
-			return argDate;
-		}
-		String[] str = argDate.split("[.]"); // .�Ƚ�����
-		int LEN = str.length;
-		for (int i = 0; i < LEN; i++) {
-			if (str[i].length() == 1) {
-				if (str[i].equals("0")) {
-					str[i] = "01";
-				} else {
-					str[i] = "0" + str[i];
-				}
-			}
-		}
-		if (LEN == 1) {
-			result = argDate + split + "01" + split + "01";
-		}
-		if (LEN == 2) {
-			result = str[0] + split + str[1] + split + "01";
-		}
-		if (LEN == 3) {
-			result = str[0] + split + str[1] + split + str[2];
-		}
-		return result;
-	}
-
-	/**
-	 * ����ָ�����ڵĵ���һ���µ�����
-	 * 
-	 * @param argDate
-	 *            ��ʽΪyyyy-MM-dd����yyyy/MM/dd
-	 * @return ��һ���µ�����
-	 */
-	public static int getNextMonthDays(String argDate) {
-		String[] temp = null;
-		if (argDate.indexOf("/") > 0) {
-			temp = argDate.split("/");
-		}
-		if (argDate.indexOf("-") > 0) {
-			temp = argDate.split("-");
-		}
-		Calendar cal = new GregorianCalendar(new Integer(temp[0]).intValue(), new Integer(temp[1]).intValue() - 1, new Integer(
-				temp[2]).intValue());
-		int curMonth = cal.get(Calendar.MONTH);
-		cal.set(Calendar.MONTH, curMonth + 1);
-
-		int curyear = cal.get(Calendar.YEAR);// ��ǰ���
-		curMonth = cal.get(Calendar.MONTH);// ��ǰ�·�,0-11
-
-		int mArray[] = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-		// �ж��������� ��2�·���29�죻
-		if ((curyear % 400 == 0) || ((curyear % 100 != 0) && (curyear % 4 == 0))) {
-			mArray[1] = 29;
-		}
-		return mArray[curMonth];
-	}
-
-	public static void main(String[] args) {
-		System.out.println(DateUtil.getCurrentDateTime());
-		System.out.println("first=" + changeDateWithSplit("2000.1", ""));
-		System.out.println("second=" + changeDateWithSplit("2000.1", "/"));
-		String[] t = getArrayDiffDays("2008/02/15", "2008/02/19");
-		for (int i = 0; i < t.length; i++) {
-			System.out.println(t[i]);
-		}
-		t = getArrayDiffDays("2008-02-15", "2008-02-19");
-		for (int i = 0; i < t.length; i++) {
-			System.out.println(t[i]);
-		}
-		System.out.println(getNextMonthDays("2008/02/15") + "||" + getCurrentMonth() + "||" + DateUtil.changeDate("1999"));
-		System.out.println(DateUtil.changeDate("1999.1"));
-		System.out.println(DateUtil.changeDate("1999.11"));
-		System.out.println(DateUtil.changeDate("1999.1.2"));
-		System.out.println(DateUtil.changeDate("1999.11.12"));
 	}
 }

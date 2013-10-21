@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.umeng.fb.FeedbackAgent;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
@@ -62,7 +63,6 @@ import cn.eoe.app.utils.IntentUtil;
 import cn.eoe.app.utils.PopupWindowUtil;
 import cn.eoe.app.widget.CustomButton;
 
-import com.umeng.fb.UMFeedbackService;
 
 public class MainActivity extends BaseSlidingFragmentActivity implements
         OnClickListener, AnimationListener {
@@ -365,7 +365,8 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
                 }
                 break;
             case R.id.cbFeedback:
-                UMFeedbackService.openUmengFeedbackSDK(this);
+                FeedbackAgent agent = new FeedbackAgent(this);
+                agent.startFeedbackActivity();
                 break;
             case R.id.cbAbove:
                 IntentUtil.start_activity(this, AboutActivity.class);

@@ -92,13 +92,8 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="com.umeng.fb.ui.SendFeedback"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name="com.umeng.fb.ui.FeedbackConversations" />
-        <activity
-            android:name="com.umeng.fb.ui.FeedbackConversation"
-            android:configChanges="keyboard" />
+        <activity android:name="com.umeng.fb.ConversationActivity"/>
+        <activity android:name="com.umeng.fb.ContactActivity"/>
 
         <!-- zxing -->
         <activity android:name="com.google.zxing.CaptureActivity"

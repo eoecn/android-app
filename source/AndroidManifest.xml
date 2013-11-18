@@ -32,7 +32,7 @@
             android:name=".ui.SplashActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/splash_style"
+            android:theme="@style/Theme.splash"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

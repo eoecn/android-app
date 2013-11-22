@@ -3,8 +3,6 @@ package cn.eoe.app.utils;
 import java.io.File;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.hardware.Camera;
 import android.os.Environment;
 import android.os.StatFs;
 
@@ -87,38 +85,5 @@ public class CommonUtil {
         return (int) (pxValue / scale + 0.5f)-15;  
     }  
 
-	/**
-     * 检测是否存在摄像头设备
-     * */
-	public static boolean isCameraHardwareIsExist( Context context ) {
-		boolean hasCamera = false;
-		if ( null == context ) {
-			return hasCamera;
-		}
-
-		if ( context.getPackageManager( ).hasSystemFeature(
-				PackageManager.FEATURE_CAMERA ) ){
-			if( null != getCameraInstance( ) ){
-				hasCamera = true;
-			}else{
-				hasCamera = false;
-			}
-		} else {
-			hasCamera = false;
-		}
-
-		return hasCamera;
-	}
-
-	private static Camera getCameraInstance( ){
-		Camera camera = null;
-		try {
-			camera = Camera.open( );// 试图获取Camera实例
-		}catch( Exception e ){
-			// 摄像头不可用（正被占用或不存在）
-			e.printStackTrace( );
-		}
-
-		return camera;// 不可用则返回null
-	}
+	
 }

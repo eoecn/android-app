@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 android-app
 ===========
 
@@ -128,3 +129,9 @@ android-app项目设置2-3名管理者，目前的管理者是
 
 ps. 
 详细的协作步骤请参考Iceskysl写的[基于Github参与eoe的开源项目指南](http://my.eoe.cn/iceskysl/archive/3195.html)文章
+=======
+test
+====
+
+用于git学习的仓库
+>>>>>>> ba97c8f99fdc34ede4de13e2abb58348745a5d8f

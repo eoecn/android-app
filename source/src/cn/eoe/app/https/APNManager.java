@@ -34,7 +34,7 @@ public class APNManager {
 	private static APNManager apnManager = null;
 
 	public static APNManager getInstance(Context context) {
-		if (apnManager != null) {
+		if (apnManager == null) {
 			apnManager = new APNManager(context);
 		}
 		return apnManager;
